@@ -1,6 +1,6 @@
-ENERGETSKI KALKULATOR
+# **ENERGETSKI KALKULATOR**
 
-MERE 2 I 3 - POSTAVLJANJE TERMICKE IZOLACIJE
+## **MERE 2 I 3 - POSTAVLJANJE TERMICKE IZOLACIJE**
 
 Ovaj mini projekat sluzi kao pomoc za kreiranje veb-sajta - Energetski kalkulator,
 koji ce pomagati gradjanima Republike Srbije da izracunaju godisnju ustedu
