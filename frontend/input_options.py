@@ -24,3 +24,10 @@ class HeatingFuelType(Enum):
     PELLET = "Pellet"
     HEAT_PUMP = "Heat Pump"
     DISTRICT_HEATING = "District Heating"
+
+class InsulatedConstructionType(Enum):
+    EXTERNAL_WALL = "External Wall"
+    GROUND_FLOOR = "Ground Floor"
+    FLOOR_ABOVE_UNHEATED = "Floor Above Unheated Space"
+    CEILING_BELOW_UNHEATED = "Ceiling Below Unheated Space"
+    ROOF_ABOVE_HEATED = "Roof Above Heated Space"
