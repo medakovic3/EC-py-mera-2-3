@@ -1,5 +1,5 @@
 from typing import Optional
-from io_dataclass import *
+from frontend.io_dataclass import *
 
 class Console:
 	def __init__(self):

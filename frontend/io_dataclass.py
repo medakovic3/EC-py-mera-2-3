@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from input_options import *
+from frontend.input_options import *
 
 @dataclass
 class OutputData:
