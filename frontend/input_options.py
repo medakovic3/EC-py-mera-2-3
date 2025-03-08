@@ -14,3 +14,13 @@ class HeatingSystemType(Enum):
     CENTRAL = "Central Heating"
     INDIVIDUAL = "Individual Heating"
     LOCAL = "Local Heating"
+
+class HeatingFuelType(Enum):
+    WOOD = "Wood"
+    COAL = "Coal"
+    LIQUID_FUEL = "Liquid Fuel"
+    ELECTRICITY = "Electricity"
+    GAS = "Gas"
+    PELLET = "Pellet"
+    HEAT_PUMP = "Heat Pump"
+    DISTRICT_HEATING = "District Heating"
