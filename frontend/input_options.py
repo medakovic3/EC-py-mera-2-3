@@ -9,3 +9,8 @@ class BuildingType(Enum):
     DETACHED = "Detached"
     BLOCK = "Block"
     HIGH_RISE = "High-Rise"
+
+class HeatingSystemType(Enum):
+    CENTRAL = "Central Heating"
+    INDIVIDUAL = "Individual Heating"
+    LOCAL = "Local Heating"
