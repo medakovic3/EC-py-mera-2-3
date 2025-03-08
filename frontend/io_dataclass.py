@@ -19,3 +19,11 @@ class UserHouseInfo:
     heating_fuel_type: HeatingFuelType
     annual_fuel_consumption: float
     fuel_cost_per_unit: float
+
+@dataclass
+class InsulationInfo:
+    investment_cost: float
+    insulated_construction_type: InsulatedConstructionType
+    insulation_thickness: float
+    insulated_area: float
+    insulation_thermal_conductivity: float
