@@ -1,6 +1,8 @@
+from frontend.console import Console
+
 def main():
-	# TODO
-	None
+	console = Console()
+	console.run()
 
 if __name__ == "__main__":
 	main()
