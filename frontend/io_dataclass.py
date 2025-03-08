@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from frontend.input_options import *
+from typing import Optional
 
 @dataclass
 class OutputData:
@@ -17,8 +18,8 @@ class UserHouseInfo:
     floor_area: float
     heating_system_type: HeatingSystemType
     heating_fuel_type: HeatingFuelType
-    annual_fuel_consumption: float
-    fuel_cost_per_unit: float
+    annual_fuel_consumption: Optional[float]
+    fuel_cost_per_unit: Optional[float]
 
 @dataclass
 class InsulationInfo:
