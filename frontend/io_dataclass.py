@@ -4,10 +4,10 @@ from typing import Optional
 
 @dataclass
 class OutputData:
-    annual_cost_savings: float
-    payback_period: float
-    annual_final_energy_savings: float
-    co2_emission_reduction: float
+    annual_cost_savings: float = 0.0
+    payback_period: float = 0.0
+    annual_final_energy_savings: float = 0.0
+    co2_emission_reduction: float = 0.0
 
 @dataclass
 class UserHouseInfo:
