@@ -3,9 +3,9 @@ from frontend.io_dataclass import *
 
 class Console:
 	def __init__(self):
-		self.output_data: Optional[OutputData] = None
-		self.user_house_info: Optional[UserHouseInfo] = None
-		self.insulation_info: Optional[InsulationInfo] = None
+		self.output_data: OutputData = None
+		self.user_house_info: UserHouseInfo = None
+		self.insulation_info: InsulationInfo = None
 
 	def run(self):
 		self.generate_input_data()
