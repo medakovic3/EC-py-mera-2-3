@@ -16,9 +16,13 @@ class Component:
         self.start_calculation()
         return self.output_data
     
-    def set_input_info(self):
-        # TODO
-        pass
+    def set_input_info(
+            self,
+            user_house_info: UserHouseInfo,
+            insulation_info: InsulationInfo
+    ):
+        self.user_house_info = user_house_info
+        self.insulation_info = insulation_info
 
     def start_calculation(self):
         # TODO
