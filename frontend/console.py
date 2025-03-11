@@ -32,7 +32,7 @@ class Console:
 
 		self.insulation_info = InsulationInfo(
 			investment_cost					= 300000.0,
-			insulated_construction_type		= InsulatedConstructionType.EXTERNAL_WALL,
+			insulated_surface_type			= InsulatedSurfaceType.EXTERNAL_WALL,
 			insulation_thickness			= 15.0,
 			insulated_area					= 30.0,
 			insulation_thermal_conductivity	= 0.035

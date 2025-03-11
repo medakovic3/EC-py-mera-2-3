@@ -24,7 +24,7 @@ class UserHouseInfo:
 @dataclass
 class InsulationInfo:
     investment_cost: float
-    insulated_construction_type: InsulatedConstructionType
+    insulated_surface_type: InsulatedSurfaceType
     insulation_thickness: float
     insulated_area: float
     insulation_thermal_conductivity: float

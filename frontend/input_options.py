@@ -25,7 +25,7 @@ class HeatingFuelType(Enum):
     HEAT_PUMP = "Heat Pump"
     DISTRICT_HEATING = "District Heating"
 
-class InsulatedConstructionType(Enum):
+class InsulatedSurfaceType(Enum):
     EXTERNAL_WALL = "External Wall"
     GROUND_FLOOR = "Ground Floor"
     FLOOR_ABOVE_UNHEATED = "Floor Above Unheated Space"
