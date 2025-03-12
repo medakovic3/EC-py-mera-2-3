@@ -40,6 +40,7 @@ class ConstructionPeriod(Enum):
     PERIOD_1981_1990 = "1981-1990"
     PERIOD_1991_2012 = "1991-2012"
     AFTER_2012 = "After 2012"
+    NOT_DETERMINED = "Not Determined"
 
 class Municipality(Enum):
     ADA = "Ada"
