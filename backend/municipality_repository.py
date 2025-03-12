@@ -1,0 +1,2 @@
+class MunicipalityRepository:
+    pass
