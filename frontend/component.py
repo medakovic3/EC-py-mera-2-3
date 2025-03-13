@@ -22,7 +22,7 @@ class Component:
         insulation_info: InsulationInfo
     ) -> OutputData:
         self.set_input_info(user_house_info, insulation_info)
-        # TODO Get data from databse
+        self.load_db_data()
         self.start_calculation()
         return self.output_data
     
@@ -33,6 +33,10 @@ class Component:
     ):
         self.user_house_info = user_house_info
         self.insulation_info = insulation_info
+
+    def load_db_data(self):
+        municipality_name = self.user_house_info.municipality.value
+        self.hdd = self.municipality_service.get_hdd_by_municipality(municipality_name)
 
     def start_calculation(self):
         # TODO
