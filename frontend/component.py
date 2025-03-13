@@ -38,6 +38,13 @@ class Component:
         municipality_name = self.user_house_info.municipality.value
         self.hdd = self.municipality_service.get_hdd_by_municipality(municipality_name)
 
+        construction_period = self.user_house_info.construction_period.value
+        insulated_surface_type = self.insulation_info.insulated_surface_type.value
+        self.needed_energy_per_m2 = self.needed_energy_service.get_needed(
+                                        construction_period,
+                                        insulated_surface_type
+                                    )
+
     def start_calculation(self):
         # TODO
         pass
