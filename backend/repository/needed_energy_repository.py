@@ -8,7 +8,7 @@ class NeededEnergyRepository:
     def get_needed(
         self,
         construciton_period: str,
-        insulated_surface_type: str
+        dwelling_type: str
     ) -> float:
         needed_energy_document = self.collection.find_one({"construction_period": construciton_period})
-        return needed_energy_document[insulated_surface_type]
+        return needed_energy_document[dwelling_type]
