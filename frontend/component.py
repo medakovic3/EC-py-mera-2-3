@@ -2,6 +2,7 @@ from frontend.io_dataclass import *
 from frontend.model.heating_fuel_parameters_model import HeatingFuelParameters
 from frontend.model.insulated_surface_parameters_model import InsulatedSurfaceParameters
 from frontend.service.municipality_service import MunicipalityService
+from frontend.service.needed_energy_service import NeededEnergyService
 
 class Component:
     def __init__(self):
@@ -15,6 +16,7 @@ class Component:
         self.insulated_surface: InsulatedSurfaceParameters = None
 
         self.municipality_service = MunicipalityService()
+        self.needed_energy_service = NeededEnergyService()
 
     def calculate_output_data(
         self,
