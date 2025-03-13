@@ -10,5 +10,5 @@ def get_db():
     return db
 
 # Test database connection
-collections = db.list_collection_names()
-print("Collections in database:", collections)
+# collections = db.list_collection_names()
+# print("Collections in database:", collections)
