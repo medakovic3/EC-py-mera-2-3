@@ -1,0 +1,2 @@
+class NeededEnergyService:
+    pass
