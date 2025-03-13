@@ -1,4 +1,9 @@
+from backend.controller.needed_energy_controller import NeededEnergyController
+
 class NeededEnergyService:
+    def __init__(self):
+        self.controller = NeededEnergyController()
+
     def get_needed(
         self,
         construction_period: str,
