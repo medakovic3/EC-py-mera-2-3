@@ -1,4 +1,9 @@
+from backend.repository.needed_energy_repository import NeededEnergyRepository
+
 class NeededEnergyController:
+    def __init__(self):
+        self.needed_energy_repository = NeededEnergyRepository()
+
     def get_needed(
         self,
         construction_period: str,
