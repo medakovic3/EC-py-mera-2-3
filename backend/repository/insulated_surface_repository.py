@@ -14,4 +14,4 @@ class InsulatedSurfaceRepository:
         insulated_surface_document = self.collection.find_one({"type": insulated_surface_type})
         U = insulated_surface_document["U"][construction_period]
         fxi = insulated_surface_document["fxi"]
-        return {U, fxi}
+        return InsulatedSurfaceParameters(U, fxi)
