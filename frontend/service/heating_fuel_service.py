@@ -1,2 +1,5 @@
+from backend.controller.heating_fuel_controller import HeatingFuelController
+
 class HeatingFuelService:
-    pass
+    def __init__(self):
+        self.controller = HeatingFuelController()
