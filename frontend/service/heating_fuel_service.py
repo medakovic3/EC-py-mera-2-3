@@ -1,0 +1,2 @@
+class HeatingFuelService:
+    pass
