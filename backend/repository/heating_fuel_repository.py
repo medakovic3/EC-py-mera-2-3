@@ -12,7 +12,7 @@ class HeatingFuelRepository:
         heating_fuel_type: str,
         heating_system_type: str
     ) -> HeatingFuelParameters:
-        heating_fuel_document = self.collection({"type": heating_fuel_type})
+        heating_fuel_document = self.collection.find_one({"type": heating_fuel_type})
         efficiency_document = heating_fuel_document[heating_system_type]
         efficiency = Efficiency(
             efficiency_document["efficiency_fuel"],
