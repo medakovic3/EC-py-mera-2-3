@@ -1,0 +1,2 @@
+class InsulatedSurfaceService:
+    pass
