@@ -50,6 +50,12 @@ class Component:
                                         construction_period,
                                         dwelling_type_str
                                     )
+        
+        insulated_surface_type = self.insulation_info.insulated_surface_type.value
+        self.insulated_surface = \
+            self.insulated_surface_service.get_insulated_surface_parameters(
+                insulated_surface_type, construction_period
+            )
 
     def start_calculation(self):
         # TODO
