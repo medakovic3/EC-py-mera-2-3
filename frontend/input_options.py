@@ -11,9 +11,9 @@ class BuildingType(Enum):
     HIGH_RISE = "High-Rise"
 
 class HeatingSystemType(Enum):
-    CENTRAL = "Central Heating"
-    INDIVIDUAL = "Individual Heating"
-    LOCAL = "Local Heating"
+    CENTRAL = "Central"
+    INDIVIDUAL = "Individual"
+    LOCAL = "Local"
 
 class HeatingFuelType(Enum):
     WOOD = "Wood"
