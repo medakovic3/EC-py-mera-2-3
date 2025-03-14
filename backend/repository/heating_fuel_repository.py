@@ -11,4 +11,5 @@ class HeatingFuelRepository:
         heating_fuel_type: str,
         heating_system_type: str
     ) -> HeatingFuelParameters:
-        pass
+        heating_fuel_document = self.collection({"type": heating_fuel_type})
+        
