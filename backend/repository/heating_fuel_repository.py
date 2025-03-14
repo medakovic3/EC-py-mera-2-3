@@ -19,3 +19,4 @@ class HeatingFuelRepository:
             efficiency_document["efficiency_pipe_system"],
             efficiency_document["efficiency_pipe_regulation"] 
         )
+        consumption_per_kWh = heating_fuel_document["consumption_per_kWh"]
