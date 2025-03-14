@@ -60,6 +60,13 @@ class Component:
             self.insulated_surface_service.get_insulated_surface_parameters(
                 insulated_surface_type, construction_period
             )
+        
+        heating_fuel_type = self.user_house_info.heating_fuel_type.value
+        heating_system_type = self.user_house_info.heating_system_type.value
+        self.heating_fuel = self.heating_fuel_service.get_heating_fuel_parameters(
+            heating_fuel_type,
+            heating_system_type
+        )
 
     def start_calculation(self):
         # TODO
