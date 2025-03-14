@@ -1,5 +1,6 @@
 from backend.db_connection import get_db
 from frontend.model.heating_fuel_parameters_model import HeatingFuelParameters
+from frontend.model.heating_fuel_parameters_model import Efficiency
 
 class HeatingFuelRepository:
     def __init__(self):
@@ -12,4 +13,9 @@ class HeatingFuelRepository:
         heating_system_type: str
     ) -> HeatingFuelParameters:
         heating_fuel_document = self.collection({"type": heating_fuel_type})
-        
+        efficiency_document = heating_fuel_document[heating_system_type]
+        efficiency = Efficiency(
+            efficiency_document["efficiency_fuel"],
+            efficiency_document["efficiency_pipe_system"],
+            efficiency_document["efficiency_pipe_regulation"] 
+        )
