@@ -39,5 +39,6 @@ class Console:
 		)
 
 	def print_output_data(self):
-		# TODO
-		None
+		print("Annual final energy savings: ", self.output_data.annual_final_energy_savings)
+		print("Annual cost savings: ", self.output_data.annual_cost_savings)
+		print("Payback period: ", self.output_data.payback_period)
