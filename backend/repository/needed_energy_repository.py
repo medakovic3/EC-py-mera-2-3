@@ -10,5 +10,7 @@ class NeededEnergyRepository:
         construciton_period: str,
         dwelling_type: str
     ) -> float:
-        needed_energy_document = self.collection.find_one({"construction_period": construciton_period})
+        needed_energy_document = self.collection.find_one(
+                                    {"construction_period": construciton_period}
+                                 )
         return needed_energy_document[dwelling_type]
