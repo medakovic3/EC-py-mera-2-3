@@ -113,3 +113,6 @@ class Component:
     def R_new(self):
         return  self.R_existing() + self.insulation_info.insulation_thickness / \
                 self.insulation_info.insulation_thermal_conductivity
+
+    def R_existing(self):
+        return 1 / self.insulated_surface.U
