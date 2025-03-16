@@ -83,16 +83,16 @@ class Component:
     def start_calculation(self):
         investment_cost: float = self.insulation_info.investment_cost
         self.output_data.payback_period = \
-                            investment_cost / self.calculate_annual_cost_savings()
+                            investment_cost / self.annual_cost_savings()
         
-    def calculate_annual_cost_savings(self) -> float:
+    def annual_cost_savings(self) -> float:
         self.output_data.annual_cost_savings = \
-            self.calculate_annual_final_energy_savings() * \
+            self.annual_final_energy_savings() * \
             self.heating_fuel.consumption_per_kWh * \
             self.user_house_info.fuel_cost_per_unit
         return self.output_data.annual_cost_savings
     
-    def calculate_annual_final_energy_savings(self):
+    def annual_final_energy_savings(self):
         self.output_data.annual_final_energy_savings = \
             self.needed_energy_savings() / \
             self.efficiency() * \
