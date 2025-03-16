@@ -93,10 +93,12 @@ class Component:
         return self.output_data.annual_cost_savings
     
     def calculate_annual_final_energy_savings(self):
-        return  self.needed_energy_savings() / \
-                self.efficiency() * \
-                self.real_consumption_coef()
-    
+        self.output_data.annual_final_energy_savings = \
+            self.needed_energy_savings() / \
+            self.efficiency() * \
+            self.real_consumption_coef()
+        return self.output_data.annual_final_energy_savings
+
     def efficiency(self):
         return  self.heating_fuel.efficiency.heating_fuel * \
                 self.heating_fuel.efficiency.pipe_system * \
