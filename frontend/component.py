@@ -81,5 +81,6 @@ class Component:
         )
 
     def start_calculation(self):
-        # TODO
-        pass
+        investment_cost: float = self.insulation_info.investment_cost
+        self.output_data.payback_period = \
+                            investment_cost / self.calculate_annual_savings()
