@@ -106,3 +106,6 @@ class Component:
         return  0.85 * self.insulated_surface.fxi * \
                 self.insulation_info.insulated_area * \
                 (self.U_old() - self.U_new()) * self.hdd * 24 / 1000
+    
+    def U_new(self):
+        return 1 / self.R_new()
