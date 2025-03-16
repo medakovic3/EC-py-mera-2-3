@@ -96,3 +96,8 @@ class Component:
         return  self.needed_energy_savings() / \
                 self.efficiency() * \
                 self.real_consumption_coef()
+    
+    def efficiency(self):
+        return  self.heating_fuel.efficiency.heating_fuel * \
+                self.heating_fuel.efficiency.pipe_system * \
+                self.heating_fuel.efficiency.pipe_regulation
