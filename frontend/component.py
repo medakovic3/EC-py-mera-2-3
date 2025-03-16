@@ -41,9 +41,16 @@ class Component:
         self.insulation_info = insulation_info
 
     def load_db_data(self):
+        self.load_hdd()
+        self.load_needed_energy()
+        self.load_insulated_surface_parameters()
+        self.load_heating_fuel_parameters()
+
+    def load_hdd(self):
         municipality_name = self.user_house_info.municipality.value
         self.hdd = self.municipality_service.get_hdd_by_municipality(municipality_name)
 
+    def load_needed_energy(self):
         construction_period = self.user_house_info.construction_period.value
         dwelling_type = self.user_house_info.dwelling_type
         dwelling_type_str = dwelling_type.value
@@ -53,14 +60,17 @@ class Component:
         self.needed_energy_per_m2 = self.needed_energy_service.get_needed(
                                         construction_period,
                                         dwelling_type_str
-                                    )
-        
+                                    )       
+
+    def load_insulated_surface_parameters(self):
         insulated_surface_type = self.insulation_info.insulated_surface_type.value
+        construction_period = self.user_house_info.construction_period.value
         self.insulated_surface = \
             self.insulated_surface_service.get_insulated_surface_parameters(
                 insulated_surface_type, construction_period
             )
-        
+
+    def load_heating_fuel_parameters(self):
         heating_fuel_type = self.user_house_info.heating_fuel_type.value
         heating_system_type = self.user_house_info.heating_system_type.value
         self.heating_fuel = self.heating_fuel_service.get_heating_fuel_parameters(
