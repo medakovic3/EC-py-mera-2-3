@@ -124,3 +124,6 @@ class Component:
         return  self.user_house_info.annual_fuel_consumption if \
                 self.user_house_info.annual_fuel_consumption else \
                 self.calculated_fuel_consumption()
+    
+    def calculated_fuel_consumption(self):
+        return self.final_energy() / self.heating_fuel.consumption_per_kWh
