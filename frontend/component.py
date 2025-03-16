@@ -130,3 +130,7 @@ class Component:
     
     def final_energy(self):
         return self.needed_energy() / self.efficiency()
+    
+    def needed_energy(self):
+        return self.needed_energy_per_m2 * self.hdd / 2665.56 * \
+                                                self.user_house_info.floor_area
