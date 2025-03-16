@@ -19,7 +19,7 @@ class UserHouseInfo:
     heating_system_type: HeatingSystemType
     heating_fuel_type: HeatingFuelType
     annual_fuel_consumption: Optional[float]
-    fuel_cost_per_unit: Optional[float]
+    fuel_cost_per_unit: float
 
 @dataclass
 class InsulationInfo:
