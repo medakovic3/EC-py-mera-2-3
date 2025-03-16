@@ -101,3 +101,8 @@ class Component:
         return  self.heating_fuel.efficiency.heating_fuel * \
                 self.heating_fuel.efficiency.pipe_system * \
                 self.heating_fuel.efficiency.pipe_regulation
+
+    def needed_energy_savings(self):
+        return  0.85 * self.insulated_surface.fxi * \
+                self.insulation_info.insulated_area * \
+                (self.U_old() - self.U_new()) * self.hdd * 24 / 1000
