@@ -119,3 +119,8 @@ class Component:
     
     def real_consumption_coef(self):
         return self.real_fuel_consumption() / self.calculated_fuel_consumption()
+    
+    def real_fuel_consumption(self):
+        return  self.user_house_info.annual_fuel_consumption if \
+                self.user_house_info.annual_fuel_consumption else \
+                self.calculated_fuel_consumption()
