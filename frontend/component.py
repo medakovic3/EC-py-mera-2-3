@@ -127,3 +127,6 @@ class Component:
     
     def calculated_fuel_consumption(self):
         return self.final_energy() / self.heating_fuel.consumption_per_kWh
+    
+    def final_energy(self):
+        return self.needed_energy() / self.efficiency()
