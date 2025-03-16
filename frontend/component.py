@@ -91,3 +91,8 @@ class Component:
             self.heating_fuel.consumption_per_kWh * \
             self.user_house_info.fuel_cost_per_unit
         return self.output_data.annual_cost_savings
+    
+    def calculate_annual_final_energy_savings(self):
+        return  self.needed_energy_savings() / \
+                self.efficiency() * \
+                self.real_consumption_coef()
