@@ -116,3 +116,6 @@ class Component:
 
     def R_existing(self):
         return 1 / self.insulated_surface.U
+    
+    def real_consumption_coef(self):
+        return self.real_fuel_consumption() / self.calculated_fuel_consumption()
