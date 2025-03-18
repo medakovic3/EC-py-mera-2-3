@@ -4,6 +4,9 @@ from frontend.service.municipality_service import MunicipalityService
 from frontend.service.needed_energy_service import NeededEnergyService
 from frontend.service.insulated_surface_service import InsulatedSurfaceService
 
+HEATING_BREAK_COEFFICIENT = 0.85
+HOURS_IN_DAY = 24
+WATTS_IN_KILOWATTS = 1000
 CENTIMETERS_IN_METER = 100
 
 class Component:
@@ -128,14 +131,14 @@ class Component:
         return  total_eff
 
     def needed_energy_savings(self):
-        heating_break_coef = 0.85
+        heating_break_coef = HEATING_BREAK_COEFFICIENT
         fxi = self.db_data.insulated_surface.fxi
         area = self.insulation_info.insulated_area
         U_old = self.db_data.insulated_surface.U
         U_new = self.U_new()
         hdd = self.db_data.hdd
-        hours = 24
-        W_in_kW = 1000
+        hours = HOURS_IN_DAY
+        W_in_kW = WATTS_IN_KILOWATTS
 
         U_diff = U_old - U_new
         nd_en_savings_W = heating_break_coef * fxi * area * U_diff * hdd * hours
