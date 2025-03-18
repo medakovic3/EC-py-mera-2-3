@@ -132,10 +132,10 @@ class Component:
         U_new = self.U_new()
         hdd = self.db_data.hdd
         hours = 24
-        unit_adj = 1000 # TODO: find the right name
+        W_in_kW = 1000
 
         U_diff = U_old - U_new
-        nd_en_savings = heating_break_coef * fxi * area * U_diff * hdd * hours / unit_adj
+        nd_en_savings = heating_break_coef * fxi * area * U_diff * hdd * hours / W_in_kW
 
         return nd_en_savings
     
