@@ -18,20 +18,20 @@ class Component:
 
     def calculate_output_data(
         self,
-        user_house_info: UserHomeInfo,
+        user_home_info: UserHomeInfo,
         insulation_info: InsulationInfo
     ) -> OutputData:
-        self.set_input_info(user_house_info, insulation_info)
+        self.set_input_info(user_home_info, insulation_info)
         self.load_db_data()
         self.start_calculation()
         return self.output_data
     
     def set_input_info(
             self,
-            user_house_info: UserHomeInfo,
+            user_home_info: UserHomeInfo,
             insulation_info: InsulationInfo
     ):
-        self.user_home_info = user_house_info
+        self.user_home_info = user_home_info
         self.insulation_info = insulation_info
 
     def load_db_data(self):

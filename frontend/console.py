@@ -5,20 +5,20 @@ from frontend.component import Component
 class Console:
 	def __init__(self):
 		self.output_data: OutputData = None
-		self.user_house_info: UserHomeInfo = None
+		self.user_home_info: UserHomeInfo = None
 		self.insulation_info: InsulationInfo = None
 		self.component = Component()
 
 	def run(self):
 		self.generate_input_data()
 		self.output_data = self.component.calculate_output_data(
-			self.user_house_info,
+			self.user_home_info,
 			self.insulation_info
 		)
 		self.print_output_data()
 
 	def generate_input_data(self):
-		self.user_house_info = UserHomeInfo(
+		self.user_home_info = UserHomeInfo(
 			municipality			= Municipality.VOZDOVAC,
 			construction_period		= ConstructionPeriod.PERIOD_1991_2012,
 			dwelling_type			= DwellingType.APARTMENT,
