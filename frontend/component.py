@@ -1,6 +1,4 @@
 from frontend.io_dataclass import *
-from frontend.model.heating_fuel_parameters_model import HeatingFuelParameters
-from frontend.model.insulated_surface_parameters_model import InsulatedSurfaceParameters
 from frontend.service.heating_fuel_service import HeatingFuelService
 from frontend.service.municipality_service import MunicipalityService
 from frontend.service.needed_energy_service import NeededEnergyService
