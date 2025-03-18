@@ -135,7 +135,8 @@ class Component:
         W_in_kW = 1000
 
         U_diff = U_old - U_new
-        nd_en_savings = heating_break_coef * fxi * area * U_diff * hdd * hours / W_in_kW
+        nd_en_savings_W = heating_break_coef * fxi * area * U_diff * hdd * hours
+        nd_en_savings = nd_en_savings_W / W_in_kW
 
         return nd_en_savings
     
