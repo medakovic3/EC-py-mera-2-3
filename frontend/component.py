@@ -4,6 +4,8 @@ from frontend.service.municipality_service import MunicipalityService
 from frontend.service.needed_energy_service import NeededEnergyService
 from frontend.service.insulated_surface_service import InsulatedSurfaceService
 
+CENTIMETERS_IN_METER = 100
+
 class Component:
     def __init__(self):
         self.output_data: OutputData = OutputData()
@@ -150,10 +152,11 @@ class Component:
     
     def R_new(self):
         R_old =self.R_old()
-        ins_thickness = self.insulation_info.insulation_thickness
+        ins_thickness_cm = self.insulation_info.insulation_thickness
+        ins_thickness_m = ins_thickness_cm / CENTIMETERS_IN_METER
         ins_thermal_cond = self.insulation_info.insulation_thermal_conductivity
 
-        R_new = R_old + (ins_thickness / ins_thermal_cond)
+        R_new = R_old + (ins_thickness_m / ins_thermal_cond)
 
         return R_new
 
