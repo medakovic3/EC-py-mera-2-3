@@ -67,11 +67,11 @@ class Component:
     def load_insulated_surface_parameters(self):
         service = self.insulated_surface_service
 
-        insulated_surface_type = self.insulation_info.insulated_surface_type.value
+        ins_surf_type = self.insulation_info.insulated_surface_type.value
         construction_period = self.user_home_info.construction_period.value
 
         insulated_surface = service.get_insulated_surface_parameters(
-                                insulated_surface_type, construction_period
+                                ins_surf_type, construction_period
                            )
 
         self.db_data.insulated_surface = insulated_surface
