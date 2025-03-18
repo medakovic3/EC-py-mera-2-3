@@ -89,59 +89,117 @@ class Component:
         self.db_data.heating_fuel = heating_fuel
 
     def start_calculation(self):
-        investment_cost: float = self.insulation_info.investment_cost
-        self.output_data.payback_period = \
-                            investment_cost / self.annual_cost_savings()
+        investment_cost = self.insulation_info.investment_cost
+
+        payback_period = investment_cost / self.annual_cost_savings()
+
+        self.output_data.payback_period = payback_period
         
-    def annual_cost_savings(self) -> float:
-        self.output_data.annual_cost_savings = \
-            self.annual_final_energy_savings() * \
-            self.db_data.heating_fuel.consumption_per_kWh * \
-            self.user_home_info.fuel_cost_per_unit
-        return self.output_data.annual_cost_savings
+    def annual_cost_savings(self):
+        fin_en_savings = self.annual_final_energy_savings()
+        fuel_cons_kWh = self.db_data.heating_fuel.consumption_per_kWh
+        fuel_unit_cost = self.user_home_info.fuel_cost_per_unit
+
+        cost_savings = fin_en_savings * fuel_cons_kWh * fuel_unit_cost
+
+        self.output_data.annual_cost_savings = cost_savings
+        return cost_savings
     
     def annual_final_energy_savings(self):
-        self.output_data.annual_final_energy_savings = \
-            self.needed_energy_savings() / \
-            self.efficiency() * \
-            self.real_consumption_coef()
-        return self.output_data.annual_final_energy_savings
+        nd_en_savings = self.needed_energy_savings()
+        total_eff = self.total_efficiency()
+        real_cons_coef = self.real_consumption_coef()
 
-    def efficiency(self):
-        return  self.db_data.heating_fuel.efficiency.heating_fuel * \
-                self.db_data.heating_fuel.efficiency.pipe_system * \
-                self.db_data.heating_fuel.efficiency.pipe_regulation
+        fin_en_savings = (nd_en_savings / total_eff) * real_cons_coef
+
+        self.output_data.annual_final_energy_savings = fin_en_savings
+        return fin_en_savings
+
+    def total_efficiency(self):
+        fuel_eff = self.db_data.heating_fuel.efficiency.heating_fuel
+        pipe_sys_eff = self.db_data.heating_fuel.efficiency.pipe_system
+        pipe_reg_eff = self.db_data.heating_fuel.efficiency.pipe_regulation
+
+        total_eff = fuel_eff * pipe_sys_eff * pipe_reg_eff
+
+        return  total_eff
 
     def needed_energy_savings(self):
-        return  0.85 * self.db_data.insulated_surface.fxi * \
-                self.insulation_info.insulated_area * \
-                (self.db_data.insulated_surface.U - self.U_new()) * \
-                self.db_data.hdd * 24 / 1000
+        coef = 0.85 # TODO: find the right name
+        fxi = self.db_data.insulated_surface.fxi
+        area = self.insulation_info.insulated_area
+        U_old = self.db_data.insulated_surface.U
+        U_new = self.U_new()
+        hdd = self.db_data.hdd
+        hours = 24
+        unit_adj = 1000 # TODO: find the right name
+
+        U_diff = U_old - U_new
+        nd_en_savings = coef * fxi * area * U_diff * hdd * hours / unit_adj
+
+        return nd_en_savings
     
     def U_new(self):
-        return 1 / self.R_new()
+        R_new = self.R_new()
+
+        U_new = 1 / R_new
+
+        return U_new
     
     def R_new(self):
-        return  self.R_existing() + self.insulation_info.insulation_thickness / \
-                self.insulation_info.insulation_thermal_conductivity
+        R_old =self.R_old()
+        ins_thickness = self.insulation_info.insulation_thickness
+        ins_thermal_cond = self.insulation_info.insulation_thermal_conductivity
 
-    def R_existing(self):
-        return 1 / self.db_data.insulated_surface.U
+        R_new = R_old + (ins_thickness / ins_thermal_cond)
+
+        return R_new
+
+    def R_old(self):
+        U_old = self.db_data.insulated_surface.U
+
+        R_old = 1 / U_old
+
+        return R_old
     
     def real_consumption_coef(self):
-        return self.real_fuel_consumption() / self.calculated_fuel_consumption()
+        real_fuel_cons = self.real_fuel_consumption()
+        calc_fuel_cons = self.calculated_fuel_consumption()
+
+        real_cons_coef = real_fuel_cons / calc_fuel_cons
+
+        return real_cons_coef
     
     def real_fuel_consumption(self):
-        return  self.user_home_info.annual_fuel_consumption if \
-                self.user_home_info.annual_fuel_consumption else \
-                self.calculated_fuel_consumption()
+        user_fuel_cons = self.user_home_info.annual_fuel_consumption
+        calc_fuel_cons = self.calculated_fuel_consumption()
+
+        real_fuel_cons = user_fuel_cons if user_fuel_cons else calc_fuel_cons
+
+        return  real_fuel_cons
     
     def calculated_fuel_consumption(self):
-        return self.final_energy() / self.db_data.heating_fuel.consumption_per_kWh
+        final_energy = self.final_energy()
+        fuel_cons_per_kWh = self.db_data.heating_fuel.consumption_per_kWh
+
+        calc_fuel_cons = final_energy / fuel_cons_per_kWh
+
+        return calc_fuel_cons
     
     def final_energy(self):
-        return self.needed_energy() / self.efficiency()
+        needed_energy = self.needed_energy()
+        total_eff = self.total_efficiency()
+
+        final_energy = needed_energy / total_eff
+
+        return final_energy
     
     def needed_energy(self):
-        return self.db_data.needed_energy_per_m2 * self.db_data.hdd / 2665.56 * \
-                                                self.user_home_info.floor_area
+        needed_en_m2 = self.db_data.needed_energy_per_m2
+        hdd = self.db_data.hdd
+        hdd_average = 2665.56
+        floor_area = self.user_home_info.floor_area
+
+        needed_energy = needed_en_m2 * (hdd / hdd_average) * floor_area
+
+        return needed_energy
