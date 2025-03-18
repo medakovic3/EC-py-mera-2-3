@@ -11,11 +11,7 @@ class Component:
         self.output_data: OutputData = OutputData()
         self.user_home_info: UserHomeInfo = None
         self.insulation_info: InsulationInfo = None
-
-        self.needed_energy_per_m2: float = 0.0
-        self.hdd: float = 0.0
-        self.heating_fuel: HeatingFuelParameters = None
-        self.insulated_surface: InsulatedSurfaceParameters = None
+        self.db_data: DBData = DBData()
 
         self.municipality_service = MunicipalityService()
         self.needed_energy_service = NeededEnergyService()
