@@ -10,7 +10,7 @@ class OutputData:
     co2_emission_reduction: float = 0.0
 
 @dataclass
-class UserHouseInfo:
+class UserHomeInfo:
     municipality: Municipality
     construction_period: ConstructionPeriod
     dwelling_type: DwellingType
