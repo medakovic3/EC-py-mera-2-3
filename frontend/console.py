@@ -39,6 +39,10 @@ class Console:
 		)
 
 	def print_output_data(self):
-		print("Annual final energy savings: ", self.output_data.annual_final_energy_savings)
-		print("Annual cost savings: ", self.output_data.annual_cost_savings)
-		print("Payback period: ", self.output_data.payback_period)
+		fin_en_savings = self.output_data.annual_final_energy_savings
+		cost_savings = self.output_data.annual_cost_savings
+		payback_period = self.output_data.payback_period
+
+		print(f"Annual final energy savings: {fin_en_savings:10.0f} kWh")
+		print(f"Annual cost savings:         {cost_savings:10.0f} rsd")
+		print(f"Payback period:              {payback_period:10.1f} years")
