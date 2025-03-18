@@ -9,7 +9,7 @@ from frontend.service.insulated_surface_service import InsulatedSurfaceService
 class Component:
     def __init__(self):
         self.output_data: OutputData = OutputData()
-        self.user_house_info: UserHomeInfo = None
+        self.user_home_info: UserHomeInfo = None
         self.insulation_info: InsulationInfo = None
 
         self.needed_energy_per_m2: float = 0.0
@@ -37,7 +37,7 @@ class Component:
             user_house_info: UserHomeInfo,
             insulation_info: InsulationInfo
     ):
-        self.user_house_info = user_house_info
+        self.user_home_info = user_house_info
         self.insulation_info = insulation_info
 
     def load_db_data(self):
@@ -47,16 +47,16 @@ class Component:
         self.load_heating_fuel_parameters()
 
     def load_hdd(self):
-        municipality_name = self.user_house_info.municipality.value
+        municipality_name = self.user_home_info.municipality.value
         self.hdd = self.municipality_service.get_hdd_by_municipality(municipality_name)
 
     def load_needed_energy(self):
-        construction_period = self.user_house_info.construction_period.value
-        dwelling_type = self.user_house_info.dwelling_type
+        construction_period = self.user_home_info.construction_period.value
+        dwelling_type = self.user_home_info.dwelling_type
         dwelling_type_str = dwelling_type.value
 
         if dwelling_type == DwellingType.APARTMENT:
-            building_type_str = self.user_house_info.building_type.value
+            building_type_str = self.user_home_info.building_type.value
             dwelling_type_str += " " + building_type_str
         
         self.needed_energy_per_m2 = self.needed_energy_service.get_needed(
@@ -66,15 +66,15 @@ class Component:
 
     def load_insulated_surface_parameters(self):
         insulated_surface_type = self.insulation_info.insulated_surface_type.value
-        construction_period = self.user_house_info.construction_period.value
+        construction_period = self.user_home_info.construction_period.value
         self.insulated_surface = \
             self.insulated_surface_service.get_insulated_surface_parameters(
                 insulated_surface_type, construction_period
             )
 
     def load_heating_fuel_parameters(self):
-        heating_fuel_type = self.user_house_info.heating_fuel_type.value
-        heating_system_type = self.user_house_info.heating_system_type.value
+        heating_fuel_type = self.user_home_info.heating_fuel_type.value
+        heating_system_type = self.user_home_info.heating_system_type.value
         self.heating_fuel = self.heating_fuel_service.get_heating_fuel_parameters(
             heating_fuel_type,
             heating_system_type
@@ -89,7 +89,7 @@ class Component:
         self.output_data.annual_cost_savings = \
             self.annual_final_energy_savings() * \
             self.heating_fuel.consumption_per_kWh * \
-            self.user_house_info.fuel_cost_per_unit
+            self.user_home_info.fuel_cost_per_unit
         return self.output_data.annual_cost_savings
     
     def annual_final_energy_savings(self):
@@ -123,8 +123,8 @@ class Component:
         return self.real_fuel_consumption() / self.calculated_fuel_consumption()
     
     def real_fuel_consumption(self):
-        return  self.user_house_info.annual_fuel_consumption if \
-                self.user_house_info.annual_fuel_consumption else \
+        return  self.user_home_info.annual_fuel_consumption if \
+                self.user_home_info.annual_fuel_consumption else \
                 self.calculated_fuel_consumption()
     
     def calculated_fuel_consumption(self):
@@ -135,4 +135,4 @@ class Component:
     
     def needed_energy(self):
         return self.needed_energy_per_m2 * self.hdd / 2665.56 * \
-                                                self.user_house_info.floor_area
+                                                self.user_home_info.floor_area
