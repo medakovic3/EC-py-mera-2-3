@@ -125,7 +125,7 @@ class Component:
         return  total_eff
 
     def needed_energy_savings(self):
-        coef = 0.85 # TODO: find the right name
+        heating_break_coef = 0.85
         fxi = self.db_data.insulated_surface.fxi
         area = self.insulation_info.insulated_area
         U_old = self.db_data.insulated_surface.U
@@ -135,7 +135,7 @@ class Component:
         unit_adj = 1000 # TODO: find the right name
 
         U_diff = U_old - U_new
-        nd_en_savings = coef * fxi * area * U_diff * hdd * hours / unit_adj
+        nd_en_savings = heating_break_coef * fxi * area * U_diff * hdd * hours / unit_adj
 
         return nd_en_savings
     
