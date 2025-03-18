@@ -90,8 +90,9 @@ class Component:
 
     def start_calculation(self):
         investment_cost = self.insulation_info.investment_cost
+        annual_cost_savings = self.annual_cost_savings()
 
-        payback_period = investment_cost / self.annual_cost_savings()
+        payback_period = investment_cost / annual_cost_savings
 
         self.output_data.payback_period = payback_period
         
