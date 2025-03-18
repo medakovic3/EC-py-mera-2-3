@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from frontend.input_options import *
 from typing import Optional
+from frontend.model.heating_fuel_parameters_model import HeatingFuelParameters
+from frontend.model.insulated_surface_parameters_model import InsulatedSurfaceParameters
 
 @dataclass
 class OutputData:
@@ -28,3 +30,10 @@ class InsulationInfo:
     insulation_thickness: float
     insulated_area: float
     insulation_thermal_conductivity: float
+
+@dataclass
+class DBData:
+    needed_energy_per_m2: float = 0.0
+    hdd: float = 0.0
+    heating_fuel: HeatingFuelParameters = None
+    insulated_surface: InsulatedSurfaceParameters = None
