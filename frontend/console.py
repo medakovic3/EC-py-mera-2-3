@@ -42,7 +42,9 @@ class Console:
 		fin_en_savings = self.output_data.annual_final_energy_savings
 		cost_savings = self.output_data.annual_cost_savings
 		payback_period = self.output_data.payback_period
+		co2_emission_red = self.output_data.co2_emission_reduction
 
 		print(f"Annual final energy savings: {fin_en_savings:10.0f} kWh")
 		print(f"Annual cost savings:         {cost_savings:10.0f} rsd")
 		print(f"Payback period:              {payback_period:10.1f} years")
+		print(f"CO2 emission reduction:      {co2_emission_red:10.1f} kg/kWh")
