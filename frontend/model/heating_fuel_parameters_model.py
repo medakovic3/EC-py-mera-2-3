@@ -10,4 +10,6 @@ class Efficiency:
 @dataclass
 class HeatingFuelParameters:
     efficiency: Efficiency
-    consumption_per_kWh: float 
+    consumption_per_kWh: float
+    prim_en_conv_factor: float
+    co2_emission: float
