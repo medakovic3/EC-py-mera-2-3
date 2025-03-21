@@ -252,3 +252,11 @@ class Component:
         prim_en_new = final_en_new * prim_en_conv_factor
 
         return prim_en_new
+    
+    def final_energy_new(self):
+        needed_en_new = self.needed_energy_new()
+        total_eff = self.total_efficiency()
+
+        final_en_new = needed_en_new / total_eff
+
+        return final_en_new
