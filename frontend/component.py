@@ -194,20 +194,20 @@ class Component:
         return  real_fuel_cons
     
     def calculated_fuel_consumption(self):
-        final_energy = self.final_energy()
+        final_energy = self.final_energy_old()
         fuel_cons_per_kWh = self.db_data.heating_fuel.consumption_per_kWh
 
         calc_fuel_cons = final_energy / fuel_cons_per_kWh
 
         return calc_fuel_cons
     
-    def final_energy(self):
-        needed_energy = self.needed_energy_old()
+    def final_energy_old(self):
+        needed_energy_old = self.needed_energy_old()
         total_eff = self.total_efficiency()
 
-        final_energy = needed_energy / total_eff
+        final_energy_old = needed_energy_old / total_eff
 
-        return final_energy
+        return final_energy_old
     
     def needed_energy_old(self):
         needed_en_m2 = self.db_data.needed_energy_per_m2
@@ -229,9 +229,9 @@ class Component:
         return co2_em_old
     
     def primary_energy_old(self):
-        final_en = self.final_energy()
+        final_en_old = self.final_energy_old()
         prim_en_conv_factor = self.db_data.heating_fuel.prim_en_conv_factor
 
-        prim_en_old = final_en * prim_en_conv_factor
+        prim_en_old = final_en_old * prim_en_conv_factor
 
         return prim_en_old
