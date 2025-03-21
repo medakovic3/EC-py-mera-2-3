@@ -235,3 +235,12 @@ class Component:
         prim_en_old = final_en_old * prim_en_conv_factor
 
         return prim_en_old
+
+    def co2_emission_new(self):
+        prim_en_new = self.primary_energy_new()
+        fuel_co2_em = self.db_data.heating_fuel.co2_emission
+        real_cons_coef = self.real_consumption_coef()
+
+        co2_em_new = prim_en_new * fuel_co2_em * real_cons_coef
+
+        return co2_em_new
