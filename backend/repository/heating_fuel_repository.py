@@ -21,5 +21,12 @@ class HeatingFuelRepository:
             efficiency_document["efficiency_pipe_regulation"] 
         )
         consumption_per_kWh = heating_fuel_document["consumption_per_kWh"]
+        prim_en_conv_factor = heating_fuel_document["prim_en_conv_factor"]
+        co2_emission = heating_fuel_document["co2_emission"]
         
-        return HeatingFuelParameters(efficiency, consumption_per_kWh)
+        return  HeatingFuelParameters(
+                    efficiency,
+                    consumption_per_kWh,
+                    prim_en_conv_factor,
+                    co2_emission
+                )
