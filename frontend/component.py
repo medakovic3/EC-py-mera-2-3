@@ -220,18 +220,18 @@ class Component:
         return needed_energy
     
     def co2_emission_old(self):
-        prim_en = self.primary_energy()
+        prim_en_old = self.primary_energy_old()
         fuel_co2_em = self.db_data.heating_fuel.co2_emission
         real_cons_coef = self.real_consumption_coef()
 
-        co2_em_old = prim_en * fuel_co2_em * real_cons_coef
+        co2_em_old = prim_en_old * fuel_co2_em * real_cons_coef
 
         return co2_em_old
     
-    def primary_energy(self):
+    def primary_energy_old(self):
         final_en = self.final_energy()
         prim_en_conv_factor = self.db_data.heating_fuel.prim_en_conv_factor
 
-        prim_en = final_en * prim_en_conv_factor
+        prim_en_old = final_en * prim_en_conv_factor
 
-        return prim_en
+        return prim_en_old
