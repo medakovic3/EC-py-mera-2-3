@@ -202,22 +202,22 @@ class Component:
         return calc_fuel_cons
     
     def final_energy(self):
-        needed_energy = self.needed_energy()
+        needed_energy = self.needed_energy_old()
         total_eff = self.total_efficiency()
 
         final_energy = needed_energy / total_eff
 
         return final_energy
     
-    def needed_energy(self):
+    def needed_energy_old(self):
         needed_en_m2 = self.db_data.needed_energy_per_m2
         hdd = self.db_data.hdd
         hdd_average = 2665.56
         floor_area = self.user_home_info.floor_area
 
-        needed_energy = needed_en_m2 * (hdd / hdd_average) * floor_area
+        needed_energy_old = needed_en_m2 * (hdd / hdd_average) * floor_area
 
-        return needed_energy
+        return needed_energy_old
     
     def co2_emission_old(self):
         prim_en_old = self.primary_energy_old()
