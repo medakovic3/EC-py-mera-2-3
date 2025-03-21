@@ -244,3 +244,11 @@ class Component:
         co2_em_new = prim_en_new * fuel_co2_em * real_cons_coef
 
         return co2_em_new
+    
+    def primary_energy_new(self):
+        final_en_new = self.final_energy_new()
+        prim_en_conv_factor = self.db_data.heating_fuel.prim_en_conv_factor
+
+        prim_en_new = final_en_new * prim_en_conv_factor
+
+        return prim_en_new
