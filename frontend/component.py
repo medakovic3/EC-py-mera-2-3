@@ -260,3 +260,11 @@ class Component:
         final_en_new = needed_en_new / total_eff
 
         return final_en_new
+    
+    def needed_energy_new(self):
+        needed_en_old = self.needed_energy_old()
+        needed_en_saved = self.needed_energy_savings()
+
+        needed_en_new = needed_en_old - needed_en_saved
+
+        return needed_en_new
