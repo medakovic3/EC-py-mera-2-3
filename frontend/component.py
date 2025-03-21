@@ -100,6 +100,13 @@ class Component:
         payback_period = investment_cost / annual_cost_savings
 
         self.output_data.payback_period = payback_period
+
+        co2_em_old = self.co2_emission_old()
+        co2_em_new = self.co2_emission_new()
+
+        co2_em_red = co2_em_old - co2_em_new
+
+        self.output_data.co2_emission_reduction = co2_em_red
         
     def annual_cost_savings(self):
         fin_en_savings = self.annual_final_energy_savings()
