@@ -31,6 +31,10 @@ class InsulatedSurfaceType(Enum):
     FLOOR_ABOVE_UNHEATED = "Floor Above Unheated Space"
     CEILING_BELOW_UNHEATED = "Ceiling Below Unheated Space"
     ROOF_ABOVE_HEATED = "Roof Above Heated Space"
+
+class JoineryMaterial(Enum):
+    WOOD = "Wood"
+    STEEL = "Steel"
     
 class ConstructionPeriod(Enum):
     BEFORE_1945 = "Before 1945"
