@@ -35,6 +35,11 @@ class InsulatedSurfaceType(Enum):
 class JoineryMaterial(Enum):
     WOOD = "Wood"
     STEEL = "Steel"
+
+class WindowGlazingType(Enum):
+    SINGLE_GLAZING = "Single Glazing"
+    DOUBLE_GLAZING = "Double Glazing"
+    DOUBLE_Casement = "Double Casement"
     
 class ConstructionPeriod(Enum):
     BEFORE_1945 = "Before 1945"
