@@ -1,4 +1,4 @@
-from frontend.insulation_console import InsulationConsole
+from frontend.insulation.insulation_console import InsulationConsole
 
 def main():
 	console = InsulationConsole()

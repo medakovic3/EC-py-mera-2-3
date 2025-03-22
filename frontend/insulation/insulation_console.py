@@ -1,6 +1,6 @@
 from typing import Optional
 from frontend.io_dataclass import *
-from frontend.insulation_component import InsulationComponent
+from frontend.insulation.insulation_component import InsulationComponent
 
 class InsulationConsole:
 	def __init__(self):
