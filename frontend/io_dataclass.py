@@ -38,6 +38,7 @@ class BoilerInfo:
     new_heating_fuel_type: HeatingFuelType
     new_fuel_cost_per_unit: float
     new_fuel_efficiency: float
+    pipe_system_isolated: bool
     pipe_system_change: bool
     thermostat_installation: bool
     
