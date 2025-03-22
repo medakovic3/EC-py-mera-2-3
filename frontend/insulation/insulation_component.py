@@ -14,7 +14,7 @@ class InsulationComponent:
         self.output_data: OutputData = OutputData()
         self.user_home_info: UserHomeInfo = None
         self.insulation_info: InsulationInfo = None
-        self.db_data: DBData = DBData()
+        self.db_data: InsulationDBData = InsulationDBData()
 
         self.municipality_service = MunicipalityService()
         self.needed_energy_service = NeededEnergyService()

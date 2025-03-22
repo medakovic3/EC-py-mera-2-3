@@ -33,7 +33,7 @@ class InsulationInfo:
     insulation_thermal_conductivity: float
 
 @dataclass
-class DBData:
+class InsulationDBData:
     needed_energy_per_m2: float = 0.0
     hdd: float = 0.0
     heating_fuel: HeatingFuelParameters = None
