@@ -92,7 +92,7 @@ class BoilerComponent:
         self.db_data.new_heating_fuel = heating_fuel
 
     def start_calculation(self):
-        investment_cost = self.insulation_info.investment_cost
+        investment_cost = self.boiler_info.investment_cost
         annual_cost_savings = self.annual_cost_savings()
 
         payback_period = investment_cost / annual_cost_savings
@@ -107,24 +107,26 @@ class BoilerComponent:
         self.output_data.co2_emission_reduction = co2_em_red
         
     def annual_cost_savings(self):
-        fin_en_savings = self.annual_final_energy_savings()
-        fuel_cons_kWh = self.db_data.heating_fuel.consumption_per_kWh
-        fuel_unit_cost = self.user_home_info.fuel_cost_per_unit
+        fin_en_old = self.final_energy_old()
+        real_cons_coef = self.real_consumption_coef()
+        fuel_cons_kWh_old = self.db_data.heating_fuel.consumption_per_kWh
+        fuel_cost_unit_old = self.user_home_info.fuel_cost_per_unit
+        annual_cost_new = self.annual_cost_new()
 
-        cost_savings = fin_en_savings * fuel_cons_kWh * fuel_unit_cost
+        annual_cost_old = fin_en_old * real_cons_coef * fuel_cons_kWh_old * fuel_cost_unit_old
 
-        self.output_data.annual_cost_savings = cost_savings
+        cost_savings = annual_cost_old - annual_cost_new
+
         return cost_savings
     
-    def annual_final_energy_savings(self):
-        nd_en_savings = self.needed_energy_savings()
-        total_eff = self.total_efficiency()
-        real_cons_coef = self.real_consumption_coef()
+    def annual_cost_new(self):
+        fin_en_new = self.final_energy_new()
+        fuel_cons_new = self.db_data.new_heating_fuel.consumption_per_kWh
+        fuel_cost_new = self.boiler_info.new_fuel_cost_per_unit
 
-        fin_en_savings = (nd_en_savings / total_eff) * real_cons_coef
+        cost_new = fin_en_new * fuel_cons_new * fuel_cost_new
 
-        self.output_data.annual_final_energy_savings = fin_en_savings
-        return fin_en_savings
+        return cost_new
 
     def total_efficiency(self):
         fuel_eff = self.db_data.heating_fuel.efficiency.heating_fuel
@@ -134,46 +136,6 @@ class BoilerComponent:
         total_eff = fuel_eff * pipe_sys_eff * pipe_reg_eff
 
         return  total_eff
-
-    def needed_energy_savings(self):
-        heating_break_coef = HEATING_BREAK_COEFFICIENT
-        fxi = self.db_data.insulated_surface.fxi
-        area = self.insulation_info.insulated_area
-        U_old = self.db_data.insulated_surface.U
-        U_new = self.U_new()
-        hdd = self.db_data.hdd
-        hours = HOURS_IN_DAY
-        W_in_kW = WATTS_IN_KILOWATTS
-
-        U_diff = U_old - U_new
-        nd_en_savings_W = heating_break_coef * fxi * area * U_diff * hdd * hours
-        nd_en_savings = nd_en_savings_W / W_in_kW
-
-        return nd_en_savings
-    
-    def U_new(self):
-        R_new = self.R_new()
-
-        U_new = 1 / R_new
-
-        return U_new
-    
-    def R_new(self):
-        R_old =self.R_old()
-        ins_thickness_cm = self.insulation_info.insulation_thickness
-        ins_thickness_m = ins_thickness_cm / CENTIMETERS_IN_METER
-        ins_thermal_cond = self.insulation_info.insulation_thermal_conductivity
-
-        R_new = R_old + (ins_thickness_m / ins_thermal_cond)
-
-        return R_new
-
-    def R_old(self):
-        U_old = self.db_data.insulated_surface.U
-
-        R_old = 1 / U_old
-
-        return R_old
     
     def real_consumption_coef(self):
         real_fuel_cons = self.real_fuel_consumption()
@@ -245,20 +207,32 @@ class BoilerComponent:
     
     def primary_energy_new(self):
         final_en_new = self.final_energy_new()
-        prim_en_conv_factor = self.db_data.heating_fuel.prim_en_conv_factor
+        prim_en_conv_factor = self.db_data.new_heating_fuel.prim_en_conv_factor
 
         prim_en_new = final_en_new * prim_en_conv_factor
 
         return prim_en_new
     
     def final_energy_new(self):
+        efficiency_new = self.total_efficiency_new()
         needed_en_new = self.needed_energy_new()
-        total_eff = self.total_efficiency()
+        real_cons_coef = self.real_consumption_coef()
+        delta1 = 0
+        delta2 = 0
 
-        final_en_new = needed_en_new / total_eff
-
-        return final_en_new
+        fin_en_new = (needed_en_new * real_cons_coef - (delta1 + delta2)) / efficiency_new
     
+        return fin_en_new
+
+    def total_efficiency_new(self):
+        fuel_eff = self.boiler_info.new_fuel_efficiency
+        pipe_system_eff = 0.98 if self.boiler_info.pipe_system_change else self.db_data.heating_fuel.efficiency.pipe_system
+        pipe_reg_eff = 0.95 if self.boiler_info.thermostat_installation else self.db_data.heating_fuel.efficiency.pipe_regulation
+
+        total_eff_new = fuel_eff * pipe_system_eff * pipe_reg_eff
+
+        return total_eff_new
+
     def needed_energy_new(self):
         needed_en_old = self.needed_energy_old()
         needed_en_saved = self.needed_energy_savings()
