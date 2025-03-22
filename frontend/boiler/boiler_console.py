@@ -31,6 +31,15 @@ class BoilerConsole:
 			fuel_cost_per_unit		= 8
 		)
 
+		self.boiler_info = BoilerInfo(
+			investment_cost = 300000,
+			new_heating_fuel_type = HeatingFuelType.PELLET,
+			new_fuel_cost_per_unit = 33000,
+			new_fuel_efficiency = 0.85,
+			pipe_system_change = True,
+			thermostat_installation = False
+		)
+
 	def print_output_data(self):
 		fin_en_savings = self.output_data.annual_final_energy_savings
 		cost_savings = self.output_data.annual_cost_savings
