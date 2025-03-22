@@ -105,6 +105,9 @@ class BoilerComponent:
         co2_em_red = co2_em_old - co2_em_new
 
         self.output_data.co2_emission_reduction = co2_em_red
+        self.output_data.annual_final_energy_savings = \
+            self.final_energy_old() * self.real_consumption_coef() - self.final_energy_new()
+
         
     def annual_cost_savings(self):
         fin_en_old = self.final_energy_old()
@@ -116,6 +119,8 @@ class BoilerComponent:
         annual_cost_old = fin_en_old * real_cons_coef * fuel_cons_kWh_old * fuel_cost_unit_old
 
         cost_savings = annual_cost_old - annual_cost_new
+
+        self.output_data.annual_cost_savings = cost_savings
 
         return cost_savings
     
