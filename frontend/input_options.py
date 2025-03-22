@@ -45,6 +45,11 @@ class WindExposure(Enum):
     EXPOSED = "Exposed"
     MODERATELY_SHELTERED = "Moderately Sheltered"
     WELL_SHELTERED = "Well Sheltered"
+
+class JoineryAirtightness(Enum):
+    POOR = "Poor Airtightness"
+    MODERATE = "Moderate Airtightness"
+    GOOD = "Good Airtightness"
     
 class ConstructionPeriod(Enum):
     BEFORE_1945 = "Before 1945"
