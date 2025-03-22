@@ -53,3 +53,4 @@ class BoilerDBData:
     needed_energy_per_m2: float = 0.0
     hdd: float = 0.0
     heating_fuel: HeatingFuelParameters = None
+    new_heating_fuel: HeatingFuelParameters = None
