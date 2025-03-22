@@ -41,6 +41,7 @@ class BoilerComponent:
         self.load_hdd()
         self.load_needed_energy()
         self.load_heating_fuel_parameters()
+        self.load_new_heating_fuel_parameteres()
 
     def load_hdd(self):
         service = self.municipality_service
@@ -77,6 +78,18 @@ class BoilerComponent:
                                )
 
         self.db_data.heating_fuel = heating_fuel
+
+    def load_new_heating_fuel_parameteres(self):
+        service = self.heating_fuel_service
+
+        heating_fuel_type = self.boiler_info.new_heating_fuel_type.value
+        heating_system_type = self.user_home_info.heating_system_type.value
+
+        heating_fuel = service.get_heating_fuel_parameters(
+                                    heating_fuel_type, heating_system_type
+                               )
+
+        self.db_data.new_heating_fuel = heating_fuel
 
     def start_calculation(self):
         investment_cost = self.insulation_info.investment_cost
