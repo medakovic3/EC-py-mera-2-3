@@ -9,7 +9,7 @@ HOURS_IN_DAY = 24
 WATTS_IN_KILOWATTS = 1000
 CENTIMETERS_IN_METER = 100
 
-class Component:
+class InsulationComponent:
     def __init__(self):
         self.output_data: OutputData = OutputData()
         self.user_home_info: UserHomeInfo = None

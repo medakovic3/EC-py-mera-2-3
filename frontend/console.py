@@ -1,13 +1,13 @@
 from typing import Optional
 from frontend.io_dataclass import *
-from frontend.component import Component
+from frontend.insulation_component import InsulationComponent
 
 class Console:
 	def __init__(self):
 		self.output_data: OutputData = None
 		self.user_home_info: UserHomeInfo = None
 		self.insulation_info: InsulationInfo = None
-		self.component = Component()
+		self.component = InsulationComponent()
 
 	def run(self):
 		self.generate_input_data()
