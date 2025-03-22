@@ -215,12 +215,12 @@ class BoilerComponent:
     
     def final_energy_new(self):
         efficiency_new = self.total_efficiency_new()
-        needed_en_new = self.needed_energy_new()
+        needed_en_old = self.needed_energy_old()
         real_cons_coef = self.real_consumption_coef()
         delta1 = 0
         delta2 = 0
 
-        fin_en_new = (needed_en_new * real_cons_coef - (delta1 + delta2)) / efficiency_new
+        fin_en_new = (needed_en_old * real_cons_coef - (delta1 + delta2)) / efficiency_new
     
         return fin_en_new
 
@@ -232,11 +232,3 @@ class BoilerComponent:
         total_eff_new = fuel_eff * pipe_system_eff * pipe_reg_eff
 
         return total_eff_new
-
-    def needed_energy_new(self):
-        needed_en_old = self.needed_energy_old()
-        needed_en_saved = self.needed_energy_savings()
-
-        needed_en_new = needed_en_old - needed_en_saved
-
-        return needed_en_new
