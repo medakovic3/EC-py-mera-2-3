@@ -24,6 +24,7 @@ class Console:
 			dwelling_type			= DwellingType.APARTMENT,
 			building_type			= BuildingType.HIGH_RISE,
 			floor_area				= 60.0,
+			height					= None,
 			heating_system_type		= HeatingSystemType.CENTRAL,
 			heating_fuel_type		= HeatingFuelType.DISTRICT_HEATING,
 			annual_fuel_consumption	= None,

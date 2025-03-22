@@ -18,6 +18,7 @@ class UserHomeInfo:
     dwelling_type: DwellingType
     building_type: BuildingType
     floor_area: float
+    height: Optional[float]
     heating_system_type: HeatingSystemType
     heating_fuel_type: HeatingFuelType
     annual_fuel_consumption: Optional[float]
