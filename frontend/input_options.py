@@ -40,6 +40,11 @@ class WindowGlazingType(Enum):
     SINGLE_GLAZING = "Single Glazing"
     DOUBLE_GLAZING = "Double Glazing"
     DOUBLE_Casement = "Double Casement"
+
+class WindExposure(Enum):
+    EXPOSED = "Exposed"
+    MODERATELY_SHELTERED = "Moderately Sheltered"
+    WELL_SHELTERED = "Well Sheltered"
     
 class ConstructionPeriod(Enum):
     BEFORE_1945 = "Before 1945"
