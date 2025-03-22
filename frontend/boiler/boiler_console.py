@@ -6,7 +6,7 @@ class BoilerConsole:
 	def __init__(self):
 		self.output_data: OutputData = None
 		self.user_home_info: UserHomeInfo = None
-		self.boiler_info = BoilerInfo()
+		self.boiler_info = None
 		self.component = BoilerComponent()
 
 	def run(self):
