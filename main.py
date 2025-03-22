@@ -1,7 +1,7 @@
-from frontend.console import Console
+from frontend.insulation_console import InsulationConsole
 
 def main():
-	console = Console()
+	console = InsulationConsole()
 	console.run()
 
 if __name__ == "__main__":

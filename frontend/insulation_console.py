@@ -2,7 +2,7 @@ from typing import Optional
 from frontend.io_dataclass import *
 from frontend.insulation_component import InsulationComponent
 
-class Console:
+class InsulationConsole:
 	def __init__(self):
 		self.output_data: OutputData = None
 		self.user_home_info: UserHomeInfo = None
