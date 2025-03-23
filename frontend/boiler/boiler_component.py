@@ -3,11 +3,6 @@ from frontend.service.heating_fuel_service import HeatingFuelService
 from frontend.service.municipality_service import MunicipalityService
 from frontend.service.needed_energy_service import NeededEnergyService
 
-HEATING_BREAK_COEFFICIENT = 0.85
-HOURS_IN_DAY = 24
-WATTS_IN_KILOWATTS = 1000
-CENTIMETERS_IN_METER = 100
-
 class BoilerComponent:
     def __init__(self):
         self.output_data: OutputData = OutputData()
