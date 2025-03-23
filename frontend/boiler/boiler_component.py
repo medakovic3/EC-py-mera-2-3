@@ -164,8 +164,10 @@ class BoilerComponent:
     def final_energy_old(self):
         needed_energy_old = self.needed_energy_old()
         total_eff = self.total_efficiency()
+        delta1 = 0
+        delta2 = 0
 
-        final_energy_old = needed_energy_old / total_eff
+        final_energy_old = (needed_energy_old - (delta1 + delta2)) / total_eff
 
         return final_energy_old
     
