@@ -41,6 +41,20 @@ class BoilerInfo:
     pipe_system_isolated: bool
     pipe_system_change: bool
     thermostat_installation: bool
+
+@dataclass
+class JoineryInfo:
+    investment_cost: float
+    window_area: float
+    window_airtightness: JoineryAirtightness
+    window_material: JoineryMaterial
+    window_glazing: WindowGlazingType
+    window_U_new: float
+    door_area: float
+    door_material: JoineryMaterial
+    door_U_new: float
+    wind_exposure: WindExposure
+
     
 @dataclass
 class InsulationDBData:
