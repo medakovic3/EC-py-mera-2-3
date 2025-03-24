@@ -148,7 +148,8 @@ class JoineryComponent:
 
     def total_efficiency(self):
         fuel_eff = self.db_data.heating_fuel.efficiency.heating_fuel
-        pipe_sys_eff = self.db_data.heating_fuel.efficiency.pipe_system
+        pipe_sys_eff =  0.98 if self.user_home_info.pipe_system_isolated else \
+                        self.db_data.heating_fuel.efficiency.pipe_system
         pipe_reg_eff = self.db_data.heating_fuel.efficiency.pipe_regulation
 
         total_eff = fuel_eff * pipe_sys_eff * pipe_reg_eff
