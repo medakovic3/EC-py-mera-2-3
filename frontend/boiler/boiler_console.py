@@ -28,7 +28,8 @@ class BoilerConsole:
 			heating_system_type		= HeatingSystemType.CENTRAL,
 			heating_fuel_type		= HeatingFuelType.DISTRICT_HEATING,
 			annual_fuel_consumption	= None,
-			fuel_cost_per_unit		= 8
+			fuel_cost_per_unit		= 8,
+			pipe_system_isolated	= True
 		)
 
 		self.boiler_info = BoilerInfo(
@@ -37,7 +38,6 @@ class BoilerConsole:
 			new_fuel_cost_per_unit = 33000,
 			new_fuel_efficiency = 0.85,
 			pipe_system_change = True,
-			pipe_system_isolated = True,
 			thermostat_installation = False
 		)
 

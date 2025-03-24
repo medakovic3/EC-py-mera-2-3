@@ -28,7 +28,8 @@ class InsulationConsole:
 			heating_system_type		= HeatingSystemType.CENTRAL,
 			heating_fuel_type		= HeatingFuelType.DISTRICT_HEATING,
 			annual_fuel_consumption	= None,
-			fuel_cost_per_unit		= 8
+			fuel_cost_per_unit		= 8,
+			pipe_system_isolated	= True
 		)
 
 		self.insulation_info = InsulationInfo(

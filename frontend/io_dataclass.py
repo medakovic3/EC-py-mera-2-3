@@ -23,6 +23,7 @@ class UserHomeInfo:
     heating_fuel_type: HeatingFuelType
     annual_fuel_consumption: Optional[float]
     fuel_cost_per_unit: float
+    pipe_system_isolated: bool
 
 @dataclass
 class InsulationInfo:
@@ -38,7 +39,6 @@ class BoilerInfo:
     new_heating_fuel_type: HeatingFuelType
     new_fuel_cost_per_unit: float
     new_fuel_efficiency: float
-    pipe_system_isolated: bool
     pipe_system_change: bool
     thermostat_installation: bool
 

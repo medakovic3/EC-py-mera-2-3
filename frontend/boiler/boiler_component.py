@@ -130,7 +130,7 @@ class BoilerComponent:
 
     def total_efficiency(self):
         fuel_eff = self.db_data.heating_fuel.efficiency.heating_fuel
-        pipe_sys_eff = 0.98 if self.boiler_info.pipe_system_isolated else self.db_data.heating_fuel.efficiency.pipe_system
+        pipe_sys_eff = 0.98 if self.user_home_info.pipe_system_isolated else self.db_data.heating_fuel.efficiency.pipe_system
         pipe_reg_eff = self.db_data.heating_fuel.efficiency.pipe_regulation
 
         total_eff = fuel_eff * pipe_sys_eff * pipe_reg_eff
@@ -228,7 +228,7 @@ class BoilerComponent:
 
     def total_efficiency_new(self):
         fuel_eff = self.boiler_info.new_fuel_efficiency
-        pipe_system_eff = 0.98 if self.boiler_info.pipe_system_change or self.boiler_info.pipe_system_isolated else self.db_data.heating_fuel.efficiency.pipe_system
+        pipe_system_eff = 0.98 if self.boiler_info.pipe_system_change or self.user_home_info.pipe_system_isolated else self.db_data.heating_fuel.efficiency.pipe_system
         pipe_reg_eff = 0.95 if self.boiler_info.thermostat_installation else self.db_data.heating_fuel.efficiency.pipe_regulation
 
         total_eff_new = fuel_eff * pipe_system_eff * pipe_reg_eff
