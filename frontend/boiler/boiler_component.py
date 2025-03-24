@@ -4,7 +4,7 @@ from frontend.service.municipality_service import MunicipalityService
 from frontend.service.needed_energy_service import NeededEnergyService
 
 class BoilerComponent:
-    def __init__(self):
+    def __init__(self, j_nd_save: float, i_nd_save: float):
         self.output_data: OutputData = OutputData()
         self.user_home_info: UserHomeInfo = None
         self.boiler_info: BoilerInfo = None
@@ -13,6 +13,9 @@ class BoilerComponent:
         self.municipality_service = MunicipalityService()
         self.needed_energy_service = NeededEnergyService()
         self.heating_fuel_service = HeatingFuelService()
+
+        self.joinery_nd_savings = j_nd_save
+        self.insulation_nd_savings = i_nd_save
 
     def calculate_output_data(
         self,
@@ -164,8 +167,8 @@ class BoilerComponent:
     def final_energy_old(self):
         needed_energy_old = self.needed_energy_old()
         total_eff = self.total_efficiency()
-        delta1 = 0
-        delta2 = 0
+        delta1 = self.joinery_nd_savings
+        delta2 = self.insulation_nd_savings
 
         final_energy_old = (needed_energy_old - (delta1 + delta2)) / total_eff
 
@@ -219,10 +222,10 @@ class BoilerComponent:
         efficiency_new = self.total_efficiency_new()
         needed_en_old = self.needed_energy_old()
         real_cons_coef = self.real_consumption_coef()
-        delta1 = 0
-        delta2 = 0
+        delta1 = self.joinery_nd_savings
+        delta2 = self.insulation_nd_savings
 
-        fin_en_new = (needed_en_old * real_cons_coef - (delta1 + delta2)) / efficiency_new
+        fin_en_new = (needed_en_old - (delta1 + delta2)) * real_cons_coef / efficiency_new
     
         return fin_en_new
 

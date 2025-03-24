@@ -3,11 +3,11 @@ from frontend.io_dataclass import *
 from frontend.boiler.boiler_component import BoilerComponent
 
 class BoilerConsole:
-	def __init__(self):
+	def __init__(self, j_nd_save: float, i_nd_save: float):
 		self.output_data: OutputData = None
 		self.user_home_info: UserHomeInfo = None
 		self.boiler_info = None
-		self.component = BoilerComponent()
+		self.component = BoilerComponent(j_nd_save, i_nd_save)
 
 	def run(self):
 		self.generate_input_data()
