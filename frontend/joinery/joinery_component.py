@@ -119,10 +119,7 @@ class JoineryComponent:
 
         self.output_data.payback_period = payback_period
 
-        co2_em_old = self.co2_emission_old()
-        co2_em_new = self.co2_emission_new()
-
-        co2_em_red = co2_em_old - co2_em_new
+        co2_em_red = self.co2_emission_reduction()
 
         self.output_data.co2_emission_reduction = co2_em_red
         
@@ -147,9 +144,10 @@ class JoineryComponent:
         return fin_en_savings
 
     def total_efficiency(self):
+        iso = self.user_home_info.pipe_system_isolated
+
         fuel_eff = self.db_data.heating_fuel.efficiency.heating_fuel
-        pipe_sys_eff =  0.98 if self.user_home_info.pipe_system_isolated else \
-                        self.db_data.heating_fuel.efficiency.pipe_system
+        pipe_sys_eff = 0.98 if iso else self.db_data.heating_fuel.efficiency.pipe_system
         pipe_reg_eff = self.db_data.heating_fuel.efficiency.pipe_regulation
 
         total_eff = fuel_eff * pipe_sys_eff * pipe_reg_eff
@@ -250,53 +248,19 @@ class JoineryComponent:
         needed_energy_old = needed_en_m2 * (hdd / hdd_average) * floor_area
 
         return needed_energy_old
-    
-    def co2_emission_old(self):
-        prim_en_old = self.primary_energy_old()
+
+    def co2_emission_reduction(self):
+        prim_en_savings = self.primary_energy_savings()
         fuel_co2_em = self.db_data.heating_fuel.co2_emission
-        real_cons_coef = self.real_consumption_coef()
 
-        co2_em_old = prim_en_old * fuel_co2_em * real_cons_coef
+        co2_em_red = prim_en_savings * fuel_co2_em
 
-        return co2_em_old
+        return co2_em_red
     
-    def primary_energy_old(self):
-        final_en_old = self.final_energy_old()
-        prim_en_conv_factor = self.db_data.heating_fuel.prim_en_conv_factor
+    def primary_energy_savings(self):
+        fin_en_savings = self.annual_final_energy_savings()
+        conv_factor = self.db_data.heating_fuel.prim_en_conv_factor
 
-        prim_en_old = final_en_old * prim_en_conv_factor
+        prim_en_savings = fin_en_savings * conv_factor
 
-        return prim_en_old
-
-    def co2_emission_new(self):
-        prim_en_new = self.primary_energy_new()
-        fuel_co2_em = self.db_data.heating_fuel.co2_emission
-        real_cons_coef = self.real_consumption_coef()
-
-        co2_em_new = prim_en_new * fuel_co2_em * real_cons_coef
-
-        return co2_em_new
-    
-    def primary_energy_new(self):
-        final_en_new = self.final_energy_new()
-        prim_en_conv_factor = self.db_data.heating_fuel.prim_en_conv_factor
-
-        prim_en_new = final_en_new * prim_en_conv_factor
-
-        return prim_en_new
-    
-    def final_energy_new(self):
-        needed_en_new = self.needed_energy_new()
-        total_eff = self.total_efficiency()
-
-        final_en_new = needed_en_new / total_eff
-
-        return final_en_new
-    
-    def needed_energy_new(self):
-        needed_en_old = self.needed_energy_old()
-        needed_en_saved = self.needed_energy_savings()
-
-        needed_en_new = needed_en_old - needed_en_saved
-
-        return needed_en_new
+        return prim_en_savings
