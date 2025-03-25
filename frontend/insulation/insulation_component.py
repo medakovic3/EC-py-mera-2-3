@@ -118,9 +118,8 @@ class InsulationComponent:
     def annual_final_energy_savings(self):
         nd_en_savings = self.needed_energy_savings()
         total_eff = self.total_efficiency()
-        real_cons_coef = self.real_consumption_coef()
 
-        fin_en_savings = (nd_en_savings / total_eff) * real_cons_coef
+        fin_en_savings = nd_en_savings / total_eff
 
         self.output_data.annual_final_energy_savings = fin_en_savings
         return fin_en_savings
@@ -145,12 +144,14 @@ class InsulationComponent:
         hdd = self.db_data.hdd
         hours = HOURS_IN_DAY
         W_in_kW = WATTS_IN_KILOWATTS
+        real_cons_coef = self.real_consumption_coef()
 
         U_diff = U_old - U_new
         nd_en_savings_W = heating_break_coef * fxi * area * U_diff * hdd * hours
         nd_en_savings = nd_en_savings_W / W_in_kW
+        nd_en_savings_real = nd_en_savings * real_cons_coef
 
-        return nd_en_savings
+        return nd_en_savings_real
     
     def U_new(self):
         R_new = self.R_new()
