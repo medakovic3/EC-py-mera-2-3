@@ -253,7 +253,7 @@ class BoilerComponent:
         return co2_em_old
     
     def primary_energy_old(self):
-        prim_en_conv_factor = self.db_data.heating_fuel.prim_en_conv_factor
+        prim_en_conv_factor = self.db_data.heating_fuel.final_to_primary_conversion_factor
         final_en_old = self.final_energy_old()
 
         prim_en_old = final_en_old * prim_en_conv_factor
@@ -269,7 +269,7 @@ class BoilerComponent:
         return co2_em_new
     
     def primary_energy_new(self):
-        prim_en_conv_factor = self.db_data.new_heating_fuel.prim_en_conv_factor
+        prim_en_conv_factor = self.db_data.new_heating_fuel.final_to_primary_conversion_factor
         final_en_new = self.final_energy_new()
 
         prim_en_new = final_en_new * prim_en_conv_factor

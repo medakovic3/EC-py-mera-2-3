@@ -11,5 +11,5 @@ class Efficiency:
 class HeatingFuelParameters:
     efficiency: Efficiency
     consumption_per_kWh: float
-    prim_en_conv_factor: float
+    final_to_primary_conversion_factor: float
     co2_emission: float

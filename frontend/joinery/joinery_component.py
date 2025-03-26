@@ -271,7 +271,7 @@ class JoineryComponent:
         return co2_em_red
     
     def primary_energy_savings(self):
-        conv_factor = self.db_data.heating_fuel.prim_en_conv_factor
+        conv_factor = self.db_data.heating_fuel.final_to_primary_conversion_factor
         fin_en_savings = self.annual_final_energy_savings()
 
         prim_en_savings = fin_en_savings * conv_factor
