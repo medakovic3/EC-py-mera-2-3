@@ -102,21 +102,24 @@ class InsulationComponent:
     # ==========================================================================
 
     def start_calculation(self):
+        payback_period = self.payback_period()
+        self.output_data.payback_period = payback_period
+
+        co2_em_red = self.co2_emission_reduction()
+        self.output_data.co2_emission_reduction = co2_em_red
+
+    def payback_period(self):
         investment_cost = self.insulation_info.investment_cost
         annual_cost_savings = self.annual_cost_savings()
 
         payback_period = investment_cost / annual_cost_savings
 
-        self.output_data.payback_period = payback_period
-
-        co2_em_red = self.co2_emission_reduction()
-
-        self.output_data.co2_emission_reduction = co2_em_red
+        return payback_period
         
     def annual_cost_savings(self):
-        fin_en_savings = self.annual_final_energy_savings()
-        fuel_cons_kWh = self.db_data.heating_fuel.consumption_per_kWh
         fuel_unit_cost = self.user_home_info.fuel_cost_per_unit
+        fuel_cons_kWh = self.db_data.heating_fuel.consumption_per_kWh
+        fin_en_savings = self.annual_final_energy_savings()
 
         cost_savings = fin_en_savings * fuel_cons_kWh * fuel_unit_cost
 
@@ -124,8 +127,8 @@ class InsulationComponent:
         return cost_savings
     
     def annual_final_energy_savings(self):
-        nd_en_savings = self.needed_energy_savings()
         total_eff = self.total_efficiency()
+        nd_en_savings = self.needed_energy_savings()
 
         fin_en_savings = nd_en_savings / total_eff
 
@@ -145,13 +148,13 @@ class InsulationComponent:
 
     def needed_energy_savings(self):
         heating_break_coef = HEATING_BREAK_COEFFICIENT
-        fxi = self.db_data.insulated_surface.fxi
-        area = self.insulation_info.insulated_area
-        U_old = self.db_data.insulated_surface.U
-        U_new = self.U_new()
-        hdd = self.db_data.hdd
         hours = HOURS_IN_DAY
         W_in_kW = WATTS_IN_KILOWATTS
+        area = self.insulation_info.insulated_area
+        fxi = self.db_data.insulated_surface.fxi
+        U_old = self.db_data.insulated_surface.U
+        hdd = self.db_data.hdd
+        U_new = self.U_new()
         real_cons_coef = self.real_consumption_coef()
 
         U_diff = U_old - U_new
@@ -169,11 +172,11 @@ class InsulationComponent:
         return U_new
     
     def R_new(self):
-        R_old =self.R_old()
         ins_thickness_cm = self.insulation_info.insulation_thickness
-        ins_thickness_m = ins_thickness_cm / CENTIMETERS_IN_METER
         ins_thermal_cond = self.insulation_info.insulation_thermal_conductivity
+        R_old =self.R_old()
 
+        ins_thickness_m = ins_thickness_cm / CENTIMETERS_IN_METER
         R_new = R_old + (ins_thickness_m / ins_thermal_cond)
 
         return R_new
@@ -202,8 +205,8 @@ class InsulationComponent:
         return  real_fuel_cons
     
     def calculated_fuel_consumption(self):
-        final_energy = self.final_energy_old()
         fuel_cons_per_kWh = self.db_data.heating_fuel.consumption_per_kWh
+        final_energy = self.final_energy_old()
 
         calc_fuel_cons = final_energy / fuel_cons_per_kWh
 
@@ -218,26 +221,26 @@ class InsulationComponent:
         return final_energy_old
     
     def needed_energy_old(self):
-        needed_en_m2 = self.db_data.needed_energy_per_m2
-        hdd = self.db_data.hdd
         hdd_average = 2665.56
         floor_area = self.user_home_info.floor_area
+        needed_en_m2 = self.db_data.needed_energy_per_m2
+        hdd = self.db_data.hdd
 
         needed_energy_old = needed_en_m2 * (hdd / hdd_average) * floor_area
 
         return needed_energy_old
 
     def co2_emission_reduction(self):
-        prim_en_savings = self.primary_energy_savings()
         fuel_co2_em = self.db_data.heating_fuel.co2_emission
+        prim_en_savings = self.primary_energy_savings()
 
         co2_em_red = prim_en_savings * fuel_co2_em
 
         return co2_em_red
     
     def primary_energy_savings(self):
-        fin_en_savings = self.annual_final_energy_savings()
         conv_factor = self.db_data.heating_fuel.prim_en_conv_factor
+        fin_en_savings = self.annual_final_energy_savings()
 
         prim_en_savings = fin_en_savings * conv_factor
 
