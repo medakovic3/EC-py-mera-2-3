@@ -41,20 +41,6 @@ class BoilerInfo:
     new_fuel_efficiency: float
     pipe_system_change: bool
     thermostat_installation: bool
-
-@dataclass
-class JoineryInfo:
-    investment_cost: float
-    window_area: float
-    window_airtightness: JoineryAirtightness
-    window_material: JoineryMaterial
-    window_glazing: WindowGlazingType
-    window_U_new: float
-    door_area: float
-    door_material: JoineryMaterial
-    door_U_new: float
-    wind_exposure: WindExposure
-
     
 @dataclass
 class InsulationDBData:
@@ -69,12 +55,3 @@ class BoilerDBData:
     hdd: float = 0.0
     heating_fuel: HeatingFuelParameters = None
     new_heating_fuel: HeatingFuelParameters = None
-
-@dataclass
-class JoineryDBData:
-    needed_energy_per_m2: float = 0.0
-    hdd: float = 0.0
-    heating_fuel: HeatingFuelParameters = None
-    air_changes_per_hour: float = 0.0
-    window_U_old: float = 0.0
-    door_U_old: float = 0.0

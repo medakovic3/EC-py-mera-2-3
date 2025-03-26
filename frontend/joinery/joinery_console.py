@@ -1,5 +1,6 @@
 from typing import Optional
 from frontend.io_dataclass import *
+from frontend.joinery.dataclasses import JoineryInfo
 from frontend.joinery.joinery_component import JoineryComponent
 
 class JoineryConsole:
