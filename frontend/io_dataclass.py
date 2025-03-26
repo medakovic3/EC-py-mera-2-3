@@ -1,8 +1,6 @@
 from dataclasses import dataclass
 from frontend.input_options import *
 from typing import Optional
-from frontend.model.heating_fuel_parameters_model import HeatingFuelParameters
-from frontend.model.insulated_surface_parameters_model import InsulatedSurfaceParameters
 
 @dataclass
 class OutputData:
