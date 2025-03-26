@@ -9,6 +9,8 @@ HEATING_BREAK_COEFFICIENT = 0.85
 HOURS_IN_DAY = 24
 WATTS_IN_KILOWATTS = 1000
 CENTIMETERS_IN_METER = 100
+ISOLATED_PIPE_SYSTEM_EFFICIENCY = 0.98
+HDD_AVERAGE = 2665.56
 
 class InsulationComponent:
     def __init__(self):
@@ -140,7 +142,8 @@ class InsulationComponent:
         iso = self.user_home_info.pipe_system_isolated
 
         fuel_eff = self.db_data.heating_fuel.efficiency.heating_fuel
-        pipe_sys_eff = 0.98 if iso else self.db_data.heating_fuel.efficiency.pipe_system
+        pipe_sys_eff = ISOLATED_PIPE_SYSTEM_EFFICIENCY if iso \
+                        else self.db_data.heating_fuel.efficiency.pipe_system
         pipe_reg_eff = self.db_data.heating_fuel.efficiency.pipe_regulation
 
         total_eff = fuel_eff * pipe_sys_eff * pipe_reg_eff
@@ -222,7 +225,7 @@ class InsulationComponent:
         return final_energy_old
     
     def needed_energy_old(self):
-        hdd_average = 2665.56
+        hdd_average = HDD_AVERAGE
         floor_area = self.user_home_info.floor_area
         needed_en_m2 = self.db_data.needed_energy_per_m2
         hdd = self.db_data.hdd

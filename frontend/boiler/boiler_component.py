@@ -4,6 +4,10 @@ from frontend.service.heating_fuel_service import HeatingFuelService
 from frontend.service.municipality_service import MunicipalityService
 from frontend.service.needed_energy_service import NeededEnergyService
 
+ISOLATED_PIPE_SYSTEM_EFFICIENCY = 0.98
+THERMOSTAT_PIPE_REGULATION_EFFICIENCY = 0.95
+HDD_AVERAGE = 2665.56
+
 class BoilerComponent:
     def __init__(self, j_nd_save: float, i_nd_save: float):
         self.output_data: OutputData = OutputData()
@@ -173,7 +177,8 @@ class BoilerComponent:
         iso = self.user_home_info.pipe_system_isolated
 
         fuel_eff = self.db_data.heating_fuel.efficiency.heating_fuel
-        pipe_sys_eff = 0.98 if iso else self.db_data.heating_fuel.efficiency.pipe_system
+        pipe_sys_eff = ISOLATED_PIPE_SYSTEM_EFFICIENCY if iso \
+                        else self.db_data.heating_fuel.efficiency.pipe_system
         pipe_reg_eff = self.db_data.heating_fuel.efficiency.pipe_regulation
 
         total_eff = fuel_eff * pipe_sys_eff * pipe_reg_eff
@@ -181,7 +186,7 @@ class BoilerComponent:
         return  total_eff
     
     def db_needed_energy(self):
-        hdd_average = 2665.56
+        hdd_average = HDD_AVERAGE
         floor_area = self.user_home_info.floor_area
         needed_en_m2 = self.db_data.needed_energy_per_m2
         hdd = self.db_data.hdd
@@ -221,8 +226,10 @@ class BoilerComponent:
         ti = self.boiler_info.thermostat_installation
 
         fuel_eff = self.boiler_info.new_fuel_efficiency
-        pipe_system_eff = 0.98 if change or iso else self.db_data.heating_fuel.efficiency.pipe_system
-        pipe_reg_eff = 0.95 if ti else self.db_data.heating_fuel.efficiency.pipe_regulation
+        pipe_system_eff = ISOLATED_PIPE_SYSTEM_EFFICIENCY if change or iso \
+                        else self.db_data.heating_fuel.efficiency.pipe_system
+        pipe_reg_eff = THERMOSTAT_PIPE_REGULATION_EFFICIENCY if ti \
+                    else self.db_data.heating_fuel.efficiency.pipe_regulation
 
         total_eff_new = fuel_eff * pipe_system_eff * pipe_reg_eff
 
