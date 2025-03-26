@@ -28,9 +28,9 @@ class BoilerComponent:
         return self.output_data
     
     def set_input_info(
-            self,
-            user_home_info: UserHomeInfo,
-            boiler_info: BoilerInfo
+        self,
+        user_home_info: UserHomeInfo,
+        boiler_info: BoilerInfo
     ):
         self.user_home_info = user_home_info
         self.boiler_info = boiler_info

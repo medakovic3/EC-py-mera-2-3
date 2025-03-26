@@ -31,9 +31,9 @@ class JoineryComponent:
         return self.output_data
     
     def set_input_info(
-            self,
-            user_home_info: UserHomeInfo,
-            joinery_info: JoineryInfo
+        self,
+        user_home_info: UserHomeInfo,
+        joinery_info: JoineryInfo
     ):
         self.user_home_info = user_home_info
         self.joinery_info = joinery_info

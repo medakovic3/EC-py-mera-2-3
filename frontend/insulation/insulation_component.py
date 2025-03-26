@@ -32,9 +32,9 @@ class InsulationComponent:
         return self.output_data
     
     def set_input_info(
-            self,
-            user_home_info: UserHomeInfo,
-            insulation_info: InsulationInfo
+        self,
+        user_home_info: UserHomeInfo,
+        insulation_info: InsulationInfo
     ):
         self.user_home_info = user_home_info
         self.insulation_info = insulation_info
