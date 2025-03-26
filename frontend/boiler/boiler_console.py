@@ -1,4 +1,5 @@
 from typing import Optional
+from frontend.boiler.dataclasses import BoilerInfo
 from frontend.io_dataclass import *
 from frontend.boiler.boiler_component import BoilerComponent
 
@@ -6,7 +7,7 @@ class BoilerConsole:
 	def __init__(self, j_nd_save: float, i_nd_save: float):
 		self.output_data: OutputData = None
 		self.user_home_info: UserHomeInfo = None
-		self.boiler_info = None
+		self.boiler_info: BoilerInfo = None
 		self.component = BoilerComponent(j_nd_save, i_nd_save)
 
 	def run(self):
