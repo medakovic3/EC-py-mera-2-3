@@ -125,9 +125,9 @@ class BoilerComponent:
         return cost_savings
     
     def annual_cost_old(self):
-        old_fin_en = self.final_energy_old()
-        old_fuel_cons_kWh = self.db_data.heating_fuel.consumption_per_kWh
         old_fuel_cost_unit = self.user_home_info.fuel_cost_per_unit
+        old_fuel_cons_kWh = self.db_data.heating_fuel.consumption_per_kWh
+        old_fin_en = self.final_energy_old()
 
         old_cost = old_fin_en * old_fuel_cons_kWh * old_fuel_cost_unit
 
@@ -180,10 +180,10 @@ class BoilerComponent:
         return  total_eff
     
     def db_needed_energy(self):
-        needed_en_m2 = self.db_data.needed_energy_per_m2
-        hdd = self.db_data.hdd
         hdd_average = 2665.56
         floor_area = self.user_home_info.floor_area
+        needed_en_m2 = self.db_data.needed_energy_per_m2
+        hdd = self.db_data.hdd
 
         db_needed_energy = needed_en_m2 * (hdd / hdd_average) * floor_area
 
@@ -198,17 +198,17 @@ class BoilerComponent:
         return needed_en_savings
     
     def annual_cost_new(self):
-        new_fin_en = self.final_energy_new()
-        new_fuel_cons_kWh = self.db_data.new_heating_fuel.consumption_per_kWh
         new_fuel_cost_unit = self.boiler_info.new_fuel_cost_per_unit
+        new_fuel_cons_kWh = self.db_data.new_heating_fuel.consumption_per_kWh
+        new_fin_en = self.final_energy_new()
 
         old_cost = new_fin_en * new_fuel_cons_kWh * new_fuel_cost_unit
 
         return old_cost
     
     def final_energy_new(self):
-        needed_en = self.needed_energy()
         new_total_eff = self.total_efficiency_new()
+        needed_en = self.needed_energy()
 
         fin_en_new = needed_en / new_total_eff
     
@@ -244,32 +244,32 @@ class BoilerComponent:
         return co2_em_red
     
     def co2_emission_old(self):
-        prim_en_old = self.primary_energy_old()
         fuel_co2_em = self.db_data.heating_fuel.co2_emission
+        prim_en_old = self.primary_energy_old()
 
         co2_em_old = prim_en_old * fuel_co2_em
 
         return co2_em_old
     
     def primary_energy_old(self):
-        final_en_old = self.final_energy_old()
         prim_en_conv_factor = self.db_data.heating_fuel.prim_en_conv_factor
+        final_en_old = self.final_energy_old()
 
         prim_en_old = final_en_old * prim_en_conv_factor
 
         return prim_en_old
 
     def co2_emission_new(self):
-        prim_en_new = self.primary_energy_new()
         fuel_co2_em = self.db_data.new_heating_fuel.co2_emission
+        prim_en_new = self.primary_energy_new()
 
         co2_em_new = prim_en_new * fuel_co2_em
 
         return co2_em_new
     
     def primary_energy_new(self):
-        final_en_new = self.final_energy_new()
         prim_en_conv_factor = self.db_data.new_heating_fuel.prim_en_conv_factor
+        final_en_new = self.final_energy_new()
 
         prim_en_new = final_en_new * prim_en_conv_factor
 
