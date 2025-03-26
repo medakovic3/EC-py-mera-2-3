@@ -3,9 +3,9 @@ from frontend.io_dataclass import *
 from frontend.boiler.boiler_component import BoilerComponent
 
 class BoilerConsole:
-	def __init__(self, j_nd_save: float, i_nd_save: float):
+	def __init__(self, user_info: UserHomeInfo, j_nd_save: float, i_nd_save: float):
 		self.output_data: OutputData = None
-		self.user_home_info: UserHomeInfo = None
+		self.user_home_info: UserHomeInfo = user_info
 		self.boiler_info: BoilerInfo = None
 		self.component = BoilerComponent(j_nd_save, i_nd_save)
 
@@ -18,20 +18,6 @@ class BoilerConsole:
 		self.print_output_data()
 
 	def generate_input_data(self):
-		self.user_home_info = UserHomeInfo(
-			municipality			= Municipality.VOZDOVAC,
-			construction_period		= ConstructionPeriod.PERIOD_1991_2012,
-			dwelling_type			= DwellingType.APARTMENT,
-			building_type			= BuildingType.HIGH_RISE,
-			floor_area				= 60.0,
-			height					= None,
-			heating_system_type		= HeatingSystemType.CENTRAL,
-			heating_fuel_type		= HeatingFuelType.DISTRICT_HEATING,
-			annual_fuel_consumption	= None,
-			fuel_cost_per_unit		= 8,
-			pipe_system_isolated	= True
-		)
-
 		self.boiler_info = BoilerInfo(
 			investment_cost = 300000,
 			new_heating_fuel_type = HeatingFuelType.PELLET,

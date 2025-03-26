@@ -3,9 +3,9 @@ from frontend.joinery.joinery_dataclasses import JoineryInfo
 from frontend.joinery.joinery_component import JoineryComponent
 
 class JoineryConsole:
-	def __init__(self):
+	def __init__(self, user_info: UserHomeInfo):
 		self.output_data: OutputData = None
-		self.user_home_info: UserHomeInfo = None
+		self.user_home_info: UserHomeInfo = user_info
 		self.joinery_info: JoineryInfo = None
 		self.component = JoineryComponent()
 
@@ -18,20 +18,6 @@ class JoineryConsole:
 		self.print_output_data()
 
 	def generate_input_data(self):
-		self.user_home_info = UserHomeInfo(
-			municipality			= Municipality.VOZDOVAC,
-			construction_period		= ConstructionPeriod.PERIOD_1991_2012,
-			dwelling_type			= DwellingType.APARTMENT,
-			building_type			= BuildingType.HIGH_RISE,
-			floor_area				= 60.0,
-			height					= 2.7,
-			heating_system_type		= HeatingSystemType.CENTRAL,
-			heating_fuel_type		= HeatingFuelType.DISTRICT_HEATING,
-			annual_fuel_consumption	= None,
-			fuel_cost_per_unit		= 8,
-			pipe_system_isolated 	= True
-		)
-
 		self.joinery_info = JoineryInfo(
 			investment_cost = 300000,
 			window_area = 15,
