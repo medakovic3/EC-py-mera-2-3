@@ -124,7 +124,7 @@ class InsulationComponent:
 
         cost_savings = fin_en_savings * fuel_cons_kWh * fuel_unit_cost
 
-        self.output_data.annual_cost_savings = cost_savings
+        self.output_data.cost_savings = cost_savings
         return cost_savings
     
     def annual_final_energy_savings(self):

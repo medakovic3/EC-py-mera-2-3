@@ -122,7 +122,7 @@ class BoilerComponent:
 
         cost_savings = old_cost - new_cost
 
-        self.output_data.annual_cost_savings = cost_savings
+        self.output_data.cost_savings = cost_savings
         return cost_savings
     
     def annual_cost_old(self):
