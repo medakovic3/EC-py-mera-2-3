@@ -1,4 +1,4 @@
-from frontend.insulation.dataclasses import *
+from frontend.insulation.insulation_dataclasses import *
 from frontend.io_dataclass import *
 from frontend.service.heating_fuel_service import HeatingFuelService
 from frontend.service.municipality_service import MunicipalityService

@@ -1,4 +1,4 @@
-from frontend.boiler.dataclasses import BoilerInfo
+from frontend.boiler.boiler_dataclasses import BoilerInfo
 from frontend.io_dataclass import *
 from frontend.boiler.boiler_component import BoilerComponent
 

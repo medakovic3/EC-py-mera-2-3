@@ -1,4 +1,4 @@
-from frontend.insulation.dataclasses import InsulationInfo
+from frontend.insulation.insulation_dataclasses import InsulationInfo
 from frontend.io_dataclass import *
 from frontend.insulation.insulation_component import InsulationComponent
 

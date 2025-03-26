@@ -1,5 +1,5 @@
 from frontend.io_dataclass import *
-from frontend.joinery.dataclasses import *
+from frontend.joinery.joinery_dataclasses import *
 from frontend.service.heating_fuel_service import HeatingFuelService
 from frontend.service.municipality_service import MunicipalityService
 from frontend.service.needed_energy_service import NeededEnergyService
