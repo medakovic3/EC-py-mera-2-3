@@ -127,7 +127,7 @@ class BoilerComponent:
     
     def needed_energy(self):
         needed_en_pure = self.needed_energy_pure()
-        needed_savings = self.needed_energy_savings()
+        needed_savings = self.insulation_joinery_needed_energy_savings()
 
         needed_en = needed_en_pure - needed_savings
 
@@ -173,7 +173,7 @@ class BoilerComponent:
 
         return db_needed_energy
     
-    def needed_energy_savings(self):
+    def insulation_joinery_needed_energy_savings(self):
         joinery_savings = self.joinery_nd_savings
         insulation_savings = self.insulation_nd_savings
 
