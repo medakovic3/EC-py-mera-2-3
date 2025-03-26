@@ -2,10 +2,6 @@ from frontend.boiler.boiler_console import BoilerConsole
 from frontend.insulation.insulation_console import InsulationConsole
 from frontend.joinery.joinery_console import JoineryConsole
 
-joinery_console: JoineryConsole = None
-insulation_console: InsulationConsole = None
-boiler_console: BoilerConsole = None
-
 joinery_needed_savings: float = 0.0
 insulation_needed_savings: float = 0.0
 
