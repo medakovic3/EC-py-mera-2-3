@@ -107,6 +107,14 @@ class BoilerComponent:
         co2_em_red = self.co2_emission_reduction()
         self.output_data.co2_emission_reduction = co2_em_red
 
+    def payback_period(self):
+        investment_cost = self.boiler_info.investment_cost
+        annual_cost_savings = self.annual_cost_savings()
+
+        payback_period = investment_cost / annual_cost_savings
+
+        return payback_period
+
     def annual_cost_savings(self):
         old_cost = self.annual_cost_old()
         new_cost = self.annual_cost_new()
@@ -218,14 +226,6 @@ class BoilerComponent:
         total_eff_new = fuel_eff * pipe_system_eff * pipe_reg_eff
 
         return total_eff_new
-
-    def payback_period(self):
-        investment_cost = self.boiler_info.investment_cost
-        annual_cost_savings = self.annual_cost_savings()
-
-        payback_period = investment_cost / annual_cost_savings
-
-        return payback_period
     
     def final_energy_savings(self):
         old_fin_en = self.final_energy_old()
