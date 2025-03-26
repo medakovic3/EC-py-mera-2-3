@@ -38,6 +38,10 @@ class JoineryComponent:
         self.user_home_info = user_home_info
         self.joinery_info = joinery_info
 
+    # ==========================================================================
+    # Load data from database
+    # ==========================================================================
+
     def load_db_data(self):
         self.load_hdd()
         self.load_needed_energy()
@@ -110,6 +114,10 @@ class JoineryComponent:
         door_U_old = service.get_door_U_old(door_mat)
 
         self.db_data.door_U_old = door_U_old
+
+    # ==========================================================================
+    # Do the calculation
+    # ==========================================================================
 
     def start_calculation(self):
         investment_cost = self.joinery_info.investment_cost

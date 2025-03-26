@@ -39,6 +39,10 @@ class InsulationComponent:
         self.user_home_info = user_home_info
         self.insulation_info = insulation_info
 
+    # ==========================================================================
+    # Load data from database
+    # ==========================================================================
+
     def load_db_data(self):
         self.load_hdd()
         self.load_needed_energy()
@@ -92,6 +96,10 @@ class InsulationComponent:
                                )
 
         self.db_data.heating_fuel = heating_fuel
+
+    # ==========================================================================
+    # Do the calculation
+    # ==========================================================================
 
     def start_calculation(self):
         investment_cost = self.insulation_info.investment_cost

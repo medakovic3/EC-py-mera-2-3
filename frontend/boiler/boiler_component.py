@@ -35,6 +35,10 @@ class BoilerComponent:
         self.user_home_info = user_home_info
         self.boiler_info = boiler_info
 
+    # ==========================================================================
+    # Load data from database
+    # ==========================================================================
+
     def load_db_data(self):
         self.load_hdd()
         self.load_needed_energy()
@@ -88,6 +92,10 @@ class BoilerComponent:
                                )
 
         self.db_data.new_heating_fuel = heating_fuel
+
+    # ==========================================================================
+    # Do the calculation
+    # ==========================================================================
 
     def start_calculation(self):
         payback_period = self.payback_period()
