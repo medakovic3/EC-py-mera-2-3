@@ -26,14 +26,6 @@ class UserHomeInfo:
     pipe_system_isolated: bool
 
 @dataclass
-class InsulationInfo:
-    investment_cost: float
-    insulated_surface_type: InsulatedSurfaceType
-    insulation_thickness: float
-    insulated_area: float
-    insulation_thermal_conductivity: float
-
-@dataclass
 class BoilerInfo:
     investment_cost: float
     new_heating_fuel_type: HeatingFuelType
@@ -41,13 +33,6 @@ class BoilerInfo:
     new_fuel_efficiency: float
     pipe_system_change: bool
     thermostat_installation: bool
-    
-@dataclass
-class InsulationDBData:
-    needed_energy_per_m2: float = 0.0
-    hdd: float = 0.0
-    heating_fuel: HeatingFuelParameters = None
-    insulated_surface: InsulatedSurfaceParameters = None
 
 @dataclass
 class BoilerDBData:
