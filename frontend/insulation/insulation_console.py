@@ -41,7 +41,7 @@ class InsulationConsole:
 		)
 
 	def print_output_data(self):
-		fin_en_savings = self.output_data.annual_final_energy_savings
+		fin_en_savings = self.output_data.final_energy_savings
 		cost_savings = self.output_data.cost_savings
 		payback_period = self.output_data.payback_period
 		co2_emission_red = self.output_data.co2_emission_reduction

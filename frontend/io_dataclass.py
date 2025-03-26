@@ -6,7 +6,7 @@ from typing import Optional
 class OutputData:
     cost_savings: float = 0.0
     payback_period: float = 0.0
-    annual_final_energy_savings: float = 0.0
+    final_energy_savings: float = 0.0
     co2_emission_reduction: float = 0.0
 
 @dataclass

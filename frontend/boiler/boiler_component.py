@@ -103,7 +103,7 @@ class BoilerComponent:
         self.output_data.payback_period = payback_period
 
         fin_en_savings = self.final_energy_savings()
-        self.output_data.annual_final_energy_savings = fin_en_savings
+        self.output_data.final_energy_savings = fin_en_savings
 
         co2_em_red = self.co2_emission_reduction()
         self.output_data.co2_emission_reduction = co2_em_red

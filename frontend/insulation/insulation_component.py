@@ -133,7 +133,7 @@ class InsulationComponent:
 
         fin_en_savings = nd_en_savings / total_eff
 
-        self.output_data.annual_final_energy_savings = fin_en_savings
+        self.output_data.final_energy_savings = fin_en_savings
         return fin_en_savings
 
     def total_efficiency(self):
