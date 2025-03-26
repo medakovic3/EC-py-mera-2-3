@@ -11,6 +11,6 @@ class HeatingFuelService:
         heating_system_type: str
     ) -> HeatingFuelParameters:
         return self.controller.get_heating_fuel_parameters(
-            heating_fuel_type,
-            heating_system_type
-        )
+                                heating_fuel_type,
+                                heating_system_type
+                               )

@@ -11,6 +11,6 @@ class InsulatedSurfaceService:
         construciton_period: str
     ) -> InsulatedSurfaceParameters:
         return self.controller.get_insulated_surface_parameters(
-            insulated_surface_type,
-            construciton_period
-        )
+                                insulated_surface_type,
+                                construciton_period
+                               )
